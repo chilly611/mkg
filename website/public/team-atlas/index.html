@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f0e8">
+  <title>Marketing Knowledge Garden · Team Atlas · Cycle 002</title>
+  <meta name="description" content="The MKG team brief — vision, wedge, killer app, competitive landscape, brand, roadmap. The ground truth marketing AI cites.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600;1,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Marketing Knowledge Garden — Team Atlas",
+    "alternateName": "MKG Cycle 002 team brief",
+    "description": "Vision, architecture, wedge strategy, killer app, competitive landscape, brand spec, and 90-day roadmap for the Marketing Knowledge Garden.",
+    "url": "https://marketing.theknowledgegardens.com/team-atlas",
+    "creator": { "@type": "Organization", "name": "The Knowledge Gardens", "url": "https://theknowledgegardens.com" },
+    "isPartOf": { "@type": "Organization", "name": "The Knowledge Gardens" },
+    "datePublished": "2026-05-10",
+    "version": "0.1"
+  }
+  </script>
+
+  <style>
+    :root {
+      color-scheme: light;
+      --parchment: #f5f0e8;
+      --parchment-deep: #ede7d4;
+      --parchment-warm: #ebe2cc;
+      --cream: #FBF8F3;
+      --teal: #1A5C5C;
+      --teal-light: #2a7a7a;
+      --teal-dark: #0f3f3f;
+      --teal-pale: rgba(26,92,92,0.08);
+      --gold: #C9A84C;
+      --copper: #B87333;
+      --copper-deep: #8f5a26;
+      --ink: #2C2C2C;
+      --ink-light: #4a4a4a;
+      --ink-soft: #5e5e5e;
+      --steel: #71797E;
+      --grid-line: rgba(26,92,92,0.10);
+      --grid-line-strong: rgba(26,92,92,0.18);
+      --line: rgba(44,44,44,0.18);
+      --line-soft: rgba(44,44,44,0.10);
+      --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      --font-display-italic: "Cormorant Garamond", Georgia, serif;
+      --font-tech: "Space Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background:
+        radial-gradient(1200px 700px at 8% 5%, rgba(26,92,92,0.05), transparent 60%),
+        radial-gradient(900px 700px at 100% 100%, rgba(184,115,51,0.05), transparent 60%),
+        var(--parchment);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 1.55;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.55;
+    }
+    a { color: var(--teal); text-decoration: none; border-bottom: 1px solid var(--line); }
+    a:hover { color: var(--copper); border-bottom-color: var(--copper); }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-sans);
+      font-weight: 800;
+      font-style: normal;
+      letter-spacing: -0.018em;
+      color: var(--ink);
+      margin: 0;
+    }
+    .emphasis-italic {
+      font-family: var(--font-display-italic);
+      font-style: italic;
+      font-weight: 500;
+      color: var(--teal);
+      letter-spacing: 0;
+    }
+    .tech, .tech-label {
+      font-family: var(--font-tech);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-weight: 700;
+      font-size: 11px;
+      color: var(--steel);
+    }
+    .tech-strong { font-family: var(--font-tech); font-size: 12px; color: var(--ink); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+
+    .frame {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 22px 96px;
+      position: relative;
+      z-index: 1;
+    }
+    @media (min-width: 768px) { .frame { padding: 56px 48px 96px; } }
+
+    .accent-bar {
+      height: 3px;
+      background: linear-gradient(90deg, var(--teal) 0%, var(--copper) 60%, transparent 100%);
+      margin-bottom: 16px;
+    }
+
+    .compass {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 88px;
+      height: 88px;
+      pointer-events: none;
+      filter: contrast(0.95);
+      mix-blend-mode: multiply;
+      opacity: 0.7;
+    }
+    @media (min-width: 768px) { .compass { width: 148px; height: 148px; top: 28px; right: 32px; } }
+    .compass img {
+      width: 100%; height: 100%; display: block;
+      animation: orrery-rotate 220s linear infinite;
+      transform-origin: 50% 50%;
+    }
+    @keyframes orrery-rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    /* ========== Masthead ========== */
+    header.masthead {
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+      padding: 22px 0;
+      margin-bottom: 28px;
+    }
+    .garden-mark { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .garden-mark .crest {
+      width: 36px; height: 36px; border: 1px solid var(--ink); border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: var(--font-display-italic); font-style: italic; font-weight: 600;
+      font-size: 22px; color: var(--teal);
+    }
+    h1.title {
+      font-size: 36px;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+    }
+    @media (min-width: 768px) { h1.title { font-size: 56px; } }
+    h1.title .emphasis-italic { font-size: 1em; }
+    .subtitle {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--ink-light);
+      margin-top: 12px;
+      max-width: 720px;
+    }
+    @media (min-width: 768px) { .subtitle { font-size: 18px; } }
+    .meta-strip {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px 22px;
+      margin-top: 22px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--line);
+    }
+    @media (min-width: 768px) { .meta-strip { grid-template-columns: repeat(4, 1fr); } }
+    .meta-item .meta-label { font-size: 9.5px; letter-spacing: 0.16em; }
+    .meta-item .meta-value {
+      font-family: var(--font-tech);
+      font-size: 11.5px;
+      color: var(--ink);
+      letter-spacing: 0.06em;
+      margin-top: 2px;
+    }
+
+    /* ========== Sister gardens ========== */
+    .sisters {
+      margin: 18px 0 0;
+      padding: 12px 14px;
+      border: 1px solid var(--ink);
+      background: var(--cream);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      align-items: center;
+    }
+    .sisters .lab { font-family: var(--font-tech); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--steel); font-weight: 700; }
+    .sisters a {
+      font-family: var(--font-tech);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 4px 8px;
+      border: 1px solid var(--line-strong);
+      background: var(--parchment);
+      color: var(--teal);
+    }
+    .sisters a:hover { border-color: var(--copper); color: var(--copper); }
+
+    /* ========== Tabs ========== */
+    nav.tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--ink);
+      margin: 28px 0 28px;
+      flex-wrap: wrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .tab {
+      flex: 0 0 auto;
+      background: transparent;
+      border: 1px solid var(--ink);
+      border-bottom: none;
+      border-right: none;
+      padding: 11px 14px;
+      cursor: pointer;
+      font-family: var(--font-tech);
+      font-size: 10.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--steel);
+      font-weight: 700;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 7px;
+      white-space: nowrap;
+    }
+    @media (min-width: 768px) { .tab { padding: 14px 20px; font-size: 11px; letter-spacing: 0.20em; gap: 8px; } }
+    .tab:last-child { border-right: 1px solid var(--ink); }
+    .tab .num { color: var(--copper); }
+    .tab[aria-selected="true"] { background: var(--ink); color: var(--cream); }
+    .tab[aria-selected="true"] .num { color: var(--copper); }
+    .panel { display: none; }
+    .panel.active { display: block; animation: fade 220ms ease-out; }
+    @keyframes fade { from { opacity: 0; transform: translateY(2px); } to { opacity: 1; transform: none; } }
+
+    /* ========== Section primitives ========== */
+    h2.section {
+      font-size: 28px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    @media (min-width: 768px) { h2.section { font-size: 38px; } }
+    .lead {
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--ink-light);
+      max-width: 760px;
+      margin: 0 0 24px;
+      font-weight: 500;
+    }
+    @media (min-width: 768px) { .lead { font-size: 17.5px; } }
+    .rule { border: none; border-top: 1px solid var(--ink); margin: 32px 0; }
+
+    .card {
+      background: var(--cream);
+      border: 1px solid var(--ink);
+      padding: 18px 18px;
+      box-shadow: 0 0 0 4px var(--parchment), 0 0 0 5px var(--ink);
+      position: relative;
+    }
+    @media (min-width: 768px) { .card { padding: 22px 22px; } }
+    .card.dim::before {
+      content: ""; position: absolute; inset: 6px;
+      border: 1px solid var(--line); pointer-events: none;
+    }
+    .card .term {
+      font-family: var(--font-tech);
+      font-size: 10.5px; letter-spacing: 0.20em;
+      text-transform: uppercase; color: var(--copper); font-weight: 700;
+    }
+    .card h3 { font-size: 22px; letter-spacing: -0.012em; margin: 6px 0 8px; }
+    .card p { margin: 6px 0 0; color: var(--ink-light); font-size: 15px; line-height: 1.5; }
+
+    .pull {
+      margin: 18px 0 0;
+      padding: 14px 18px;
+      border-left: 3px solid var(--copper);
+      background: var(--cream);
+    }
+    .pull .body {
+      font-family: var(--font-display-italic);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 1.45;
+      color: var(--ink);
+    }
+    .pull .attr {
+      margin-top: 8px;
+      font-family: var(--font-tech);
+      font-size: 9.5px;
+      letter-spacing: 0.18em;
+      color: var(--steel);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr; gap: 18px; }
+    @media (min-width: 768px) { .grid-2 { grid-template-columns: 1fr 1fr; gap: 22px; } }
+    .grid-3 { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    @media (min-width: 768px) { .grid-3 { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
+    .grid-4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    @media (min-width: 768px) { .grid-4 { grid-template-columns: repeat(4, 1fr); gap: 16px; } }
+
+    .stat {
+      padding: 14px 14px;
+      border: 1px solid var(--ink);
+      background: var(--cream);
+    }
+    .stat .num {
+      font-weight: 800; font-size: 32px; line-height: 1; color: var(--teal); letter-spacing: -0.02em; display: block;
+    }
+    .stat .lab {
+      font-family: var(--font-tech); font-size: 9.5px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--steel); font-weight: 700;
+      display: block; margin-top: 6px;
+    }
+
+    .lane-grid { display: grid; grid-template-columns: 1fr; gap: 0; border: 1px solid var(--ink); background: var(--cream); }
+    @media (min-width: 768px) { .lane-grid { grid-template-columns: repeat(4, 1fr); } }
+    .lane {
+      padding: 16px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    @media (min-width: 768px) { .lane { border-bottom: none; border-right: 1px solid var(--line); } .lane:last-child { border-right: none; } }
+    .lane:last-child { border-bottom: none; }
+    .lane .num { font-family: var(--font-tech); font-size: 10.5px; letter-spacing: 0.18em; color: var(--copper); text-transform: uppercase; font-weight: 700; }
+    .lane h4 { font-size: 20px; margin: 4px 0 4px; letter-spacing: -0.012em; }
+    .lane h4 .lane-tag {
+      display: block;
+      font-family: var(--font-display-italic);
+      font-style: italic; font-weight: 500; font-size: 13px;
+      color: var(--steel); letter-spacing: 0; margin-top: 2px;
+    }
+    .lane p { font-size: 13.5px; line-height: 1.45; margin: 8px 0 6px; color: var(--ink-light); }
+    .lane .price { font-family: var(--font-tech); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); font-weight: 700; margin-top: 8px; }
+
+    /* Hero emblem frame */
+    .emblem-frame {
+      position: relative;
+      border: 1px solid var(--ink);
+      background: var(--cream);
+      padding: 16px;
+      box-shadow: 0 0 0 4px var(--parchment), 0 0 0 5px var(--ink);
+    }
+    .emblem-frame::before {
+      content: ""; position: absolute; inset: 6px;
+      border: 1px solid var(--line); pointer-events: none;
+    }
+    .emblem-frame img { width: 100%; display: block; mix-blend-mode: multiply; }
+    .emblem-cap {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--line);
+      font-family: var(--font-tech);
+      font-size: 9.5px;
+      letter-spacing: 0.16em;
+      color: var(--steel);
+      text-transform: uppercase;
+    }
+
+    /* Plate (specimen card) */
+    .plate-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    @media (min-width: 600px) { .plate-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1000px) { .plate-grid { grid-template-columns: repeat(3, 1fr); } }
+    .plate {
+      background: var(--cream); border: 1px solid var(--ink);
+      box-shadow: 0 0 0 4px var(--parchment), 0 0 0 5px var(--ink);
+      padding: 14px; position: relative;
+      display: flex; flex-direction: column; gap: 8px;
+      min-height: 200px;
+    }
+    .plate-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+    .plate-name { font-weight: 800; font-size: 19px; line-height: 1.18; letter-spacing: -0.012em; }
+    .plate-cat { font-family: var(--font-tech); font-size: 9px; color: var(--steel); letter-spacing: 0.14em; text-transform: uppercase; text-align: right; line-height: 1.4; font-weight: 700; }
+    .plate-pos { font-size: 14px; line-height: 1.45; color: var(--ink-light); margin: 0; }
+    .plate-attr { display: grid; grid-template-columns: 78px 1fr; gap: 4px 10px; font-size: 12.5px; margin-top: auto; padding-top: 8px; border-top: 1px dashed var(--line); }
+    .plate-attr dt { font-family: var(--font-tech); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--steel); font-weight: 700; align-self: center; }
+    .plate-attr dd { margin: 0; font-weight: 600; font-size: 12.5px; }
+
+    /* Roadmap */
+    .week-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+    @media (min-width: 768px) { .week-grid { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
+    .week {
+      border: 1px solid var(--ink); background: var(--cream); padding: 16px;
+    }
+    .week .wlab { font-family: var(--font-tech); font-size: 10.5px; letter-spacing: 0.20em; color: var(--copper); text-transform: uppercase; font-weight: 700; }
+    .week h4 { font-size: 19px; margin: 4px 0 8px; }
+    .week ul { padding-left: 18px; margin: 0; font-size: 14px; line-height: 1.5; color: var(--ink-light); }
+    .week ul li { margin: 4px 0; }
+
+    /* Open questions */
+    .qbox {
+      border: 1px solid var(--ink); background: var(--cream); padding: 14px 16px; margin-bottom: 12px;
+    }
+    .qbox .qkey { font-family: var(--font-tech); font-size: 10.5px; letter-spacing: 0.18em; color: var(--copper); text-transform: uppercase; font-weight: 700; }
+    .qbox h4 { font-size: 18px; margin: 4px 0 6px; letter-spacing: -0.01em; }
+    .qbox p { margin: 0; color: var(--ink-light); font-size: 14.5px; line-height: 1.5; }
+
+    /* Conveyor belt */
+    .conveyor {
+      margin: 26px 0 8px;
+      padding: 22px 0 14px;
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+      position: relative;
+      background: rgba(251,248,243,0.4);
+    }
+    .conveyor-label { position: absolute; top: -10px; left: 14px; background: var(--parchment); padding: 0 8px; font-family: var(--font-tech); font-size: 10px; letter-spacing: 0.20em; color: var(--steel); text-transform: uppercase; font-weight: 700; }
+    .conveyor svg { width: 100%; height: 76px; opacity: 0.95; }
+    .conveyor .cap { font-family: var(--font-display-italic); font-style: italic; color: var(--steel); font-size: 14px; text-align: center; margin: 6px 0 0; }
+
+    /* Sources callout */
+    .src {
+      font-family: var(--font-tech); font-size: 10px;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); font-weight: 700; margin-top: 6px;
+    }
+    .src a { color: var(--teal); border-bottom: 1px dotted var(--teal); }
+
+    /* Footer */
+    footer.colophon {
+      margin-top: 56px;
+      padding-top: 18px;
+      border-top: 1px solid var(--ink);
+      display: flex; gap: 14px; justify-content: space-between;
+      flex-wrap: wrap; font-size: 13px; color: var(--steel);
+    }
+    .colophon .quote { font-family: var(--font-display-italic); font-style: italic; max-width: 540px; }
+    .colophon .tech-strip { font-family: var(--font-tech); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; }
+
+    /* Tag chips */
+    .tag {
+      display: inline-block;
+      font-family: var(--font-tech); font-size: 9.5px;
+      letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700;
+      padding: 3px 7px; background: var(--teal-pale);
+      color: var(--teal-dark); border: 1px solid var(--grid-line-strong);
+      margin-right: 6px; margin-top: 4px;
+    }
+    .tag.copper { background: rgba(184,115,51,0.10); color: var(--copper); border-color: rgba(184,115,51,0.3); }
+
+    /* Decorative dim line */
+    .dim {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-tech); font-size: 10px;
+      letter-spacing: 0.14em; color: var(--steel); text-transform: uppercase; font-weight: 700;
+    }
+    .dim::before, .dim::after { content: ""; width: 28px; height: 1px; background: var(--copper); display: inline-block; }
+  </style>
+</head>
+<body>
+
+<div class="frame">
+  <div class="compass" aria-hidden="true">
+    <img src="/emblems/emblem-orrery.png" alt="">
+  </div>
+
+  <div class="accent-bar"></div>
+
+  <header class="masthead">
+    <div class="garden-mark">
+      <span class="crest">M</span>
+      <span class="tech-label">The Knowledge Gardens · Marketing Vertical · Cycle 002</span>
+    </div>
+    <h1 class="title">The team brief for <span class="emphasis-italic">our newest garden</span>.</h1>
+    <p class="subtitle">A pressed-plate atlas of MKG: vision, architecture, the wedge, the killer app, the competitive landscape, the brand, the 90-day plan, and the open questions. Designed to be read on a phone, defended in a meeting, cited by an LLM.</p>
+
+    <div class="meta-strip">
+      <div class="meta-item"><span class="tech-label meta-label">Tagline (umbrella)</span><span class="meta-value">The ground truth AI needs to survive.</span></div>
+      <div class="meta-item"><span class="tech-label meta-label">Tagline (MKG)</span><span class="meta-value">The ground truth marketing AI cites.</span></div>
+      <div class="meta-item"><span class="tech-label meta-label">Primary entity</span><span class="meta-value">Campaign</span></div>
+      <div class="meta-item"><span class="tech-label meta-label">Beachhead</span><span class="meta-value">The umbrella itself</span></div>
+    </div>
+
+    <div class="sisters">
+      <span class="lab">Sister gardens</span>
+      <a href="https://orchids.theknowledgegardens.com" rel="related">Orchid · OKG</a>
+      <a href="https://builders.theknowledgegardens.com" rel="related">Builders · BKG</a>
+      <a href="https://health.theknowledgegardens.com" rel="related">Health · HKG</a>
+      <a href="https://toxicology.theknowledgegardens.com" rel="related">Toxicology · TKG</a>
+      <a href="https://garden-wars.vercel.app" rel="related">Garden Wars</a>
+      <a href="https://theknowledgegardens.com" rel="up">The umbrella</a>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Marketing Knowledge Garden — Team Atlas">
+    <button class="tab" role="tab" aria-selected="true"  data-tab="vision"      ><span class="num">01</span> Vision</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="architecture"><span class="num">02</span> Architecture</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="wedge"       ><span class="num">03</span> Wedge</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="killerapp"   ><span class="num">04</span> Killer App</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="landscape"   ><span class="num">05</span> Landscape</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="brand"       ><span class="num">06</span> Brand</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="roadmap"     ><span class="num">07</span> Roadmap</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="open"        ><span class="num">08</span> Open Q's</button>
+  </nav>
+
+  <!-- ============ 01 VISION ============ -->
+  <section class="panel active" role="tabpanel" data-panel="vision">
+    <h2 class="section">A garden the umbrella tends, and AI cites.</h2>
+    <p class="lead">When a CMO, founder, or AI agent asks any LLM <span class="emphasis-italic">"what's the best AI tool for X?"</span>, the answer should cite a neutral, taxonomic source. Today there is none. The Marketing Knowledge Garden is the canonical, AI-citable, commerce-integrated knowledge graph of how marketing actually works in the agentic era — and the first customer is us.</p>
+
+    <div class="grid-2">
+      <div class="emblem-frame">
+        <img src="/emblems/emblem-tree.png" alt="The umbrella tree mark with copper measurement rings — knowledge above ground, data below.">
+        <div class="emblem-cap">Specimen · Marketing Knowledge Garden · Pressed 2026-05-10</div>
+      </div>
+      <div>
+        <div class="card dim">
+          <span class="term">Definition · Specimen 001</span>
+          <h3>What MKG is.</h3>
+          <p>A federation vertical of The Knowledge Gardens. Same skeleton as OKG / BKG / HKG / TKG (four lanes × three surfaces × one knowledge graph). Different skin — marketing. <span class="emphasis-italic">Campaign</span> is the primary entity; channels, audiences, formats, assets, frameworks, benchmarks are facets.</p>
+        </div>
+        <div class="card dim" style="margin-top:14px;">
+          <span class="term">What it isn't</span>
+          <h3>Not a marketing agency. Not a SaaS tool. Not a directory.</h3>
+          <p>MKG sells <span class="emphasis-italic">structured ground truth</span> that LLMs cite. Other gardens taught us the pattern works for orchids, contractors, providers, compounds. Marketing is the next vertical it's deployed in.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull">
+      <p class="body">"The pattern is the product. A single-vertical company is valued at 10–15× ARR. A repeatable pattern is infrastructure valued at 30–50× ARR. Investors buy the factory, not the first product off the line."</p>
+      <span class="attr">— Masterdoc v2 §6.3 — three strategic principles</span>
+    </div>
+
+    <hr class="rule">
+
+    <h2 class="section" style="font-size:24px;">By the numbers · Cycle 002 baseline.</h2>
+    <div class="grid-4" style="margin-top:14px;">
+      <div class="stat"><span class="num">40</span><span class="lab">Competitors mapped</span></div>
+      <div class="stat"><span class="num">$540M+</span><span class="lab">Capital in category</span></div>
+      <div class="stat"><span class="num">0/4</span><span class="lab">MKG citations today</span></div>
+      <div class="stat"><span class="num">12</span><span class="lab">Agents dispatched</span></div>
+    </div>
+    <p style="margin-top:14px;"><span class="dim">Citation health · 2026-05-10 · pre-MKG baseline</span></p>
+  </section>
+
+  <!-- ============ 02 ARCHITECTURE ============ -->
+  <section class="panel" role="tabpanel" data-panel="architecture">
+    <h2 class="section">Four lanes. Three surfaces. One graph.</h2>
+    <p class="lead">Every Knowledge Garden runs the same factory. <span class="emphasis-italic">Public</span> Lane is the gravity well; <span class="emphasis-italic">Professional</span> Lane is monthly revenue; <span class="emphasis-italic">Admin</span> Lane is enterprise cash; <span class="emphasis-italic">Machine</span> Lane is the moat. MKG inherits this; it does not invent it.</p>
+
+    <div class="grid-2" style="margin-bottom:24px;">
+      <div class="emblem-frame">
+        <img src="/emblems/emblem-city.png" alt="Tree-and-city schematic — the four-lane infrastructure beneath the gardens.">
+        <div class="emblem-cap">Schematic · The umbrella is the engine. The gardens are the inputs.</div>
+      </div>
+      <div>
+        <p style="font-size:15px; line-height:1.55; color:var(--ink-light); margin:0 0 12px;">A single visitor compounds across every lane. A free Campaign Teardown becomes a subscription dashboard, becomes an enterprise vendor-intelligence contract, becomes an MCP feed consumed by their AI agents. <span class="emphasis-italic">Same knowledge graph, four economics.</span></p>
+        <p style="font-size:15px; line-height:1.55; color:var(--ink-light); margin:0;">The same skeleton ships across every garden — Builder's, Orchid, Health, Toxicology, Marketing. <span class="emphasis-italic">Different verbs, same shape.</span></p>
+      </div>
+    </div>
+
+    <div class="lane-grid" role="list">
+      <div class="lane" role="listitem">
+        <span class="num">Lane 01</span>
+        <h4>Public<span class="lane-tag">Gravity well</span></h4>
+        <p>Free Campaign Teardown — paste a campaign URL, MKG structures it. Output is a JSON-LD entry in the graph, not just a score.</p>
+        <p class="price">Zero CAC · Citation moat</p>
+      </div>
+      <div class="lane" role="listitem">
+        <span class="num">Lane 02</span>
+        <h4>Professional<span class="lane-tag">Engagement</span></h4>
+        <p>Practitioner $79 · Studio $249 · Studio+ $799 / mo. MCP server access, JSON-LD exports, write-back to graph. For in-house marketers and agencies.</p>
+        <p class="price">$79 – $799 / mo</p>
+      </div>
+      <div class="lane" role="listitem">
+        <span class="num">Lane 03</span>
+        <h4>Admin<span class="lane-tag">Cash</span></h4>
+        <p>Vendor intelligence, M&amp;A target maps, custom landscape reports for enterprises, PE firms, agency holdcos.</p>
+        <p class="price">$60K – $240K ACV</p>
+      </div>
+      <div class="lane" role="listitem">
+        <span class="num">Lane 04</span>
+        <h4>Machine<span class="lane-tag">Defensibility</span></h4>
+        <p>API + MCP + JSON-LD feeds + data licensing. AI agents reach into the graph; we become infrastructure.</p>
+        <p class="price">Free → $250K – $2M / yr</p>
+      </div>
+    </div>
+
+    <div class="conveyor">
+      <span class="conveyor-label">Conveyor belt · Public → Machine</span>
+      <svg viewBox="0 0 1200 76" preserveAspectRatio="none" aria-hidden="true">
+        <line x1="0" y1="18" x2="1200" y2="18" stroke="#2C2C2C" stroke-width="1"/>
+        <line x1="0" y1="58" x2="1200" y2="58" stroke="#2C2C2C" stroke-width="1"/>
+        <g stroke="#71797E" stroke-width="0.5">
+          <line x1="40" y1="18" x2="40" y2="58"/><line x1="120" y1="18" x2="120" y2="58"/>
+          <line x1="200" y1="18" x2="200" y2="58"/><line x1="280" y1="18" x2="280" y2="58"/>
+          <line x1="360" y1="18" x2="360" y2="58"/><line x1="440" y1="18" x2="440" y2="58"/>
+          <line x1="520" y1="18" x2="520" y2="58"/><line x1="600" y1="18" x2="600" y2="58"/>
+          <line x1="680" y1="18" x2="680" y2="58"/><line x1="760" y1="18" x2="760" y2="58"/>
+          <line x1="840" y1="18" x2="840" y2="58"/><line x1="920" y1="18" x2="920" y2="58"/>
+          <line x1="1000" y1="18" x2="1000" y2="58"/><line x1="1080" y1="18" x2="1080" y2="58"/>
+          <line x1="1160" y1="18" x2="1160" y2="58"/>
+        </g>
+        <circle cx="22" cy="38" r="13" fill="none" stroke="#2C2C2C" stroke-width="1"/><circle cx="22" cy="38" r="3" fill="#B87333"/>
+        <circle cx="1178" cy="38" r="13" fill="none" stroke="#2C2C2C" stroke-width="1"/><circle cx="1178" cy="38" r="3" fill="#B87333"/>
+        <g font-family="Space Mono, monospace" font-size="10" font-weight="700" fill="#71797E" letter-spacing="2">
+          <text x="160" y="12">PUBLIC</text><text x="460" y="12">PROFESSIONAL</text>
+          <text x="800" y="12">ADMIN</text><text x="1080" y="12">MACHINE</text>
+        </g>
+        <g font-family="Cormorant Garamond, serif" font-style="italic" font-size="12" fill="#1A5C5C">
+          <text x="160" y="74">visitors</text><text x="460" y="74">subscribers</text>
+          <text x="800" y="74">enterprises</text><text x="1080" y="74">AI agents</text>
+        </g>
+        <g stroke="#B87333" stroke-width="1.4" fill="none">
+          <line x1="160" y1="38" x2="1060" y2="38"/>
+          <polyline points="1052,32 1062,38 1052,44"/>
+        </g>
+      </svg>
+      <p class="cap">A single visitor journeys from free tool → subscription → enterprise → API consumer.</p>
+    </div>
+
+    <hr class="rule">
+
+    <h2 class="section" style="font-size:22px;">Three surfaces of the same graph.</h2>
+    <div class="grid-3" style="margin-top:14px;">
+      <div class="card dim">
+        <span class="term">Surface 01 · Gold</span>
+        <h3>Dream Machine.</h3>
+        <p>Public / consumer / enthusiast. Aspirational. Concierge. Warm gradients, generous whitespace. The future, arrived early.</p>
+      </div>
+      <div class="card dim">
+        <span class="term">Surface 02 · Green</span>
+        <h3>Knowledge Garden.</h3>
+        <p>Professional / practitioner. Scientific. Verified. Cool palette, citation-rich. The smartest colleague you've ever had.</p>
+      </div>
+      <div class="card dim">
+        <span class="term">Surface 03 · Red</span>
+        <h3>Killer App.</h3>
+        <p>Admin / operator. Operational. Urgent. Metric-driven. Saves time and money immediately.</p>
+      </div>
+    </div>
+    <p class="src" style="margin-top:14px;">Source · <a href="#">Masterdoc v2 §2.2</a></p>
+  </section>
+
+  <!-- ============ 03 WEDGE ============ -->
+  <section class="panel" role="tabpanel" data-panel="wedge">
+    <h2 class="section">Where MKG wins first.</h2>
+    <p class="lead">The wedge: <span class="emphasis-italic">open-publish the BKG sliver-launch teardown</span> as Campaign #001 at <span class="tech-strong">marketing.theknowledgegardens.com/campaigns/bkg-sliver-launch-2026</span>. Real campaign, rights cleared, already in flight per Dual Track Blitz. The teardown is documentation we already need to produce, restructured into an AI-citable surface.</p>
+
+    <div class="grid-3" style="margin-top:14px;">
+      <div class="card dim">
+        <span class="term">Pick (a) · Yes</span>
+        <h3>BKG sliver-launch teardown.</h3>
+        <p>Real, rights-cleared, low-stakes domain to prove the format. Cycle 002 deliverable.</p>
+      </div>
+      <div class="card dim">
+        <span class="term">Pick (b) · Later</span>
+        <h3>HKG GLP-1 patient lane.</h3>
+        <p>Most commercially dramatic, but HIPAA posture audit is a pre-seed gate. Healthcare anti-fabrication risk is highest. Publish second.</p>
+      </div>
+      <div class="card dim">
+        <span class="term">Pick (c) · Cycle 005+</span>
+        <h3>Seed pitch as teardown.</h3>
+        <p>Leaks strategy mid-process. Conflates marketing-the-platform with marketing-a-product. Wait until seed closes.</p>
+      </div>
+    </div>
+
+    <hr class="rule">
+
+    <h2 class="section" style="font-size:24px;">The five threats.</h2>
+    <p class="lead" style="font-size:15px;">From the 40-entity GEO/AEO landscape — only five are direct moat threats. Most others sell visibility tracking; MKG sells the structured knowledge LLMs cite. Different categories.</p>
+
+    <div class="grid-2" style="margin-top:14px;">
+      <div class="card">
+        <h3>Profound · $155M, ~$1B</h3>
+        <p><strong>Threat:</strong> could pivot from tracker to becoming-the-citation-source. <strong>Our edge:</strong> Profound is a SaaS dashboard; MKG is the graph. <strong>Their neutralizer:</strong> open-source a JSON-LD benchmark library before MKG hits density.</p>
+      </div>
+      <div class="card">
+        <h3>Bluefish AI · $68M Series B</h3>
+        <p><strong>Threat:</strong> closest direct positioning. F500 + Salesforce + Bloomberg integrations. <strong>Our edge:</strong> closed enterprise vs MKG public &amp; neutral. F500 brands won't share data; our internal data is open by definition.</p>
+      </div>
+      <div class="card">
+        <h3>AirOps · $60M Greylock</h3>
+        <p><strong>Threat:</strong> "content engineering for AI search" — most architecturally similar. <strong>Our edge:</strong> AirOps is a pickaxe (optimizes customers' content); MKG is the gold (the content AI cites).</p>
+      </div>
+      <div class="card">
+        <h3>Adobe LLM Optimizer + HubSpot AEO</h3>
+        <p><strong>Threat:</strong> distribution. Every F500 already pays Adobe; HubSpot has CRM scale. <strong>Our edge:</strong> their data is biased toward who pays them and locked behind login; MKG is public and citable.</p>
+      </div>
+    </div>
+
+    <div class="pull">
+      <p class="body">"The single shared blind spot: none of them ships a neutral, primary-entity-anchored, JSON-LD-first knowledge graph. They build tools to help brands compete. Nobody is building the ground truth."</p>
+      <span class="attr">— strategy-agent-1 · wedge memo</span>
+    </div>
+  </section>
+
+  <!-- ============ 04 KILLER APP ============ -->
+  <section class="panel" role="tabpanel" data-panel="killerapp">
+    <h2 class="section">The Campaign Teardown.</h2>
+    <p class="lead">Per masterdoc §11.5: every Campaign renders as a four-tab Species Experience. The same kernel that makes OKG's Species Experience legible — Photo / Blueprint / Intelligence / Compare — applied to marketing as <span class="emphasis-italic">Creative / Anatomy / Intelligence / Compare</span>.</p>
+
+    <div class="grid-2" style="margin-top:14px;">
+      <div class="card dim">
+        <span class="term">Tab 01</span>
+        <h3>Creative.</h3>
+        <p>The raw asset. Image, video, copy, landing page screenshot, podcast embed. <strong>No annotations.</strong> If we don't have rights, we show a placeholder; the structured anatomy still works.</p>
+      </div>
+      <div class="card dim">
+        <span class="term">Tab 02</span>
+        <h3>Anatomy.</h3>
+        <p>Engineering-style annotations on the creative: dimension lines on copy length, callouts on the CTA, brackets on the audience cue, copper underlines on framework references.</p>
+      </div>
+      <div class="card dim">
+        <span class="term">Tab 03</span>
+        <h3>Intelligence.</h3>
+        <p>Three rows: benchmarks the campaign was measured against, actual measured performance, frameworks cited (Ehrenberg-Bass, MSI, IPA effectiveness). Every row carries a source URL.</p>
+      </div>
+      <div class="card dim">
+        <span class="term">Tab 04</span>
+        <h3>Compare.</h3>
+        <p>The signature device. <strong>Draggable slider</strong> showing two views of the same artifact: Creative on the left, Anatomy overlay on the right. OKG's photo↔blueprint pattern, applied to marketing.</p>
+      </div>
+    </div>
+
+    <hr class="rule">
+
+    <h2 class="section" style="font-size:22px;">Anti-fabrication — codified.</h2>
+    <p class="lead" style="font-size:15px;">Marketing is the domain most prone to LLM hallucination. Schema enforces the discipline.</p>
+    <div class="grid-2">
+      <div class="card">
+        <h3>No invented numbers.</h3>
+        <p>Schema constraint: <code class="tech-strong">benchmarks.source_id</code> is NOT NULL; <code class="tech-strong">metrics.source_kind</code> is NOT NULL. No platform-reported / inferred / claimed-by-brand label, no row.</p>
+      </div>
+      <div class="card">
+        <h3>No invented attribution.</h3>
+        <p>Show the framework and the assumption explicitly. If we don't know if MMM, last-click, or platform-reported is the basis, the metric carries a confidence flag.</p>
+      </div>
+      <div class="card">
+        <h3>No publishing without rights.</h3>
+        <p>We own it, the brand released it publicly, or we show only the structured anatomy without the creative. Cycle 002 BKG teardown is owned content.</p>
+      </div>
+      <div class="card">
+        <h3>No success without success metric.</h3>
+        <p>"Successful" alone is meaningless. <span class="emphasis-italic">"Hit a 4.2× ROAS over 30 days against a 3.0× WordStream search benchmark"</span> is meaningful.</p>
+      </div>
+    </div>
+    <p class="src" style="margin-top:14px;">Source · <a href="/docs/campaign-teardown.md">Campaign Teardown PRD</a> · <a href="/docs/schema.sql">SCHEMA.sql v0.2</a></p>
+  </section>
+
+  <!-- ============ 05 LANDSCAPE ============ -->
+  <section class="panel" role="tabpanel" data-panel="landscape">
+    <h2 class="section">The competitive landscape.</h2>
+    <p class="lead">The 40 GEO/AEO platforms and adjacent species we mapped Cycle 001–002. Most are visibility-tracking SaaS; a handful are real moat threats. Full atlas at the link below; this is the team summary.</p>
+
+    <div class="grid-4" style="margin-top:14px;">
+      <div class="stat"><span class="num">40</span><span class="lab">GEO/AEO entities</span></div>
+      <div class="stat"><span class="num">28</span><span class="lab">Autonomous mkt agents</span></div>
+      <div class="stat"><span class="num">42</span><span class="lab">Vertical AI mkt tools</span></div>
+      <div class="stat"><span class="num">37</span><span class="lab">LATAM + agentic commerce</span></div>
+    </div>
+
+    <hr class="rule">
+
+    <h2 class="section" style="font-size:22px;">Top capital-deployers.</h2>
+    <div class="plate-grid">
+      <article class="plate">
+        <div class="plate-head"><h3 class="plate-name">Profound</h3><div class="plate-cat">CAT. NO.<br>MKG-GEO-001</div></div>
+        <p class="plate-pos">Enterprise AI search analytics across ChatGPT, Perplexity, Gemini.</p>
+        <dl class="plate-attr">
+          <dt>HQ</dt><dd>New York</dd>
+          <dt>Funding</dt><dd>Series C · $155M</dd>
+          <dt>Buyer</dt><dd>Enterprise brand</dd>
+        </dl>
+        <span class="tag copper">Enterprise</span><span class="tag">USA</span>
+      </article>
+      <article class="plate">
+        <div class="plate-head"><h3 class="plate-name">Bluefish AI</h3><div class="plate-cat">CAT. NO.<br>MKG-GEO-005</div></div>
+        <p class="plate-pos">Enterprise AI marketing for F500 governance and brand safety.</p>
+        <dl class="plate-attr">
+          <dt>HQ</dt><dd>New York</dd>
+          <dt>Funding</dt><dd>Series B · $68M</dd>
+          <dt>Buyer</dt><dd>F500 CMO</dd>
+        </dl>
+        <span class="tag copper">Enterprise</span><span class="tag">USA</span>
+      </article>
+      <article class="plate">
+        <div class="plate-head"><h3 class="plate-name">AirOps</h3><div class="plate-cat">CAT. NO.<br>MKG-GEO-012</div></div>
+        <p class="plate-pos">Content engineering platform for AI search.</p>
+        <dl class="plate-attr">
+          <dt>HQ</dt><dd>San Francisco</dd>
+          <dt>Funding</dt><dd>Series B · $60M</dd>
+          <dt>Buyer</dt><dd>In-house content / SEO</dd>
+        </dl>
+        <span class="tag copper">Enterprise</span><span class="tag">USA</span>
+      </article>
+      <article class="plate">
+        <div class="plate-head"><h3 class="plate-name">Brandlight</h3><div class="plate-cat">CAT. NO.<br>MKG-GEO-006</div></div>
+        <p class="plate-pos">Cross-engine governance for ChatGPT, AI Overviews, AI surfaces.</p>
+        <dl class="plate-attr">
+          <dt>HQ</dt><dd>New York</dd>
+          <dt>Funding</dt><dd>Series A · $35.75M</dd>
+          <dt>Buyer</dt><dd>Enterprise CMO</dd>
+        </dl>
+        <span class="tag copper">Enterprise</span><span class="tag">USA</span>
+      </article>
+      <article class="plate">
+        <div class="plate-head"><h3 class="plate-name">Peec AI</h3><div class="plate-cat">CAT. NO.<br>MKG-GEO-022</div></div>
+        <p class="plate-pos">AI search analytics for marketing teams across major LLMs.</p>
+        <dl class="plate-attr">
+          <dt>HQ</dt><dd>Berlin</dd>
+          <dt>Funding</dt><dd>Series A · $29M</dd>
+          <dt>Buyer</dt><dd>In-house marketing</dd>
+        </dl>
+        <span class="tag copper">Agency</span><span class="tag">EU</span>
+      </article>
+      <article class="plate">
+        <div class="plate-head"><h3 class="plate-name">Evertune</h3><div class="plate-cat">CAT. NO.<br>MKG-GEO-007</div></div>
+        <p class="plate-pos">Enterprise GEO with statistically significant brand-perception sampling.</p>
+        <dl class="plate-attr">
+          <dt>HQ</dt><dd>New York</dd>
+          <dt>Funding</dt><dd>Series A · $20M</dd>
+          <dt>Buyer</dt><dd>F500 CMO</dd>
+        </dl>
+        <span class="tag copper">Enterprise</span><span class="tag">USA</span>
+      </article>
+    </div>
+    <p style="margin-top:14px;"><a href="/competitive-landscape/" class="tech-strong">→ Open the full 40-specimen atlas</a></p>
+
+    <hr class="rule">
+
+    <h2 class="section" style="font-size:22px;">Adjacent worlds we now know.</h2>
+    <div class="grid-3" style="margin-top:14px;">
+      <div class="card dim">
+        <span class="term">Wedge research-2</span>
+        <h3>Autonomous marketing agents.</h3>
+        <p>~28 entities mapped. Cassidy, Aomni, AirOps, Topsort, Pencil, Omneky, Clay, 11x, Rox, Regie.ai, AiSDR. Categories: full-funnel, content, media-buying, lifecycle, creative-ops, outbound, influencer, vertical.</p>
+      </div>
+      <div class="card dim">
+        <span class="term">Wedge research-4</span>
+        <h3>Vertical AI marketing for our gardens.</h3>
+        <p>Healthcare crowded (Doximity, Klick); construction mature on workflow (ServiceTitan, Houzz Pro, BuildOps); botanical &amp; toxicology nearly empty. <span class="emphasis-italic">Highest arbitrage: OKG and TKG verticals.</span></p>
+      </div>
+      <div class="card dim">
+        <span class="term">Wedge research-5</span>
+        <h3>LATAM + agentic commerce.</h3>
+        <p>LATAM has rich WhatsApp commerce (RD Station, Take Blip, Yalo, Botmaker, Vambe) but ZERO native GEO/AEO platforms. Agentic commerce is mid-stage: Stripe ACP + Google UCP shipped; PayPal × Perplexity Instant Buy live.</p>
+      </div>
+    </div>
+
+    <div class="pull">
+      <p class="body">"WhatsApp + AI agents + LATAM commerce is unusually defensible white space. LATAM consumers already trust conversational commerce more than email or web. The behavioral migration is half-done."</p>
+      <span class="attr">— research-5 · LATAM &amp; agentic commerce</span>
+    </div>
+  </section>
+
+  <!-- ============ 06 BRAND ============ -->
+  <section class="panel" role="tabpanel" data-panel="brand">
+    <h2 class="section">Sacred rules.</h2>
+    <p class="lead">Inherited from the umbrella masterdoc v2 §7 and 09_LESSONS.md. Violate any and the work is rejected. MKG inherits the visual DNA — voice over-corrects toward restraint because marketing is the domain most prone to bombast.</p>
+
+    <div class="grid-2">
+      <div class="card dim">
+        <span class="term">L-001 · Sacred</span>
+        <h3>Parchment, never dark.</h3>
+        <p>Background <span class="tech-strong">#f5f0e8</span>. Cream <span class="tech-strong">#FBF8F3</span> for cards. Garden Wars is the one exception — it's intentionally a dark strategy tool.</p>
+      </div>
+      <div class="card dim">
+        <span class="term">L-026 · Promoted from TKG</span>
+        <h3>Bold sans-serif default.</h3>
+        <p>Inter 700–800 for headlines, titles, CTAs. Cormorant Garamond italic via <code class="tech-strong">.emphasis-italic</code>, opt-in only. Space Mono uppercase wide-tracked for tech labels.</p>
+      </div>
+      <div class="card dim">
+        <span class="term">L-027 · Brand</span>
+        <h3>Motion is the brand.</h3>
+        <p>The orrery rotates. The conveyor belt animates. Reduced-motion media queries are intentionally absent. Attention spans are short; motion holds them.</p>
+      </div>
+      <div class="card dim">
+        <span class="term">L-005 · Signature</span>
+        <h3>Victorian engineering signature.</h3>
+        <p>Every public surface includes at least one of: dimension-line annotation, hand-drawn flourish, gear/compass ornament, source-citation footer, graph visualization texture.</p>
+      </div>
+    </div>
+
+    <hr class="rule">
+
+    <h2 class="section" style="font-size:22px;">Voice rules.</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Do say.</h3>
+        <ul style="padding-left:20px; margin:8px 0 0; color:var(--ink-light); font-size:14.5px; line-height:1.6;">
+          <li>Evidence suggests…</li>
+          <li>Verified against three sources.</li>
+          <li>Updated 4 hours ago.</li>
+          <li>Ground truth for [domain].</li>
+          <li>The knowledge graph connects…</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Don't say.</h3>
+        <ul style="padding-left:20px; margin:8px 0 0; color:var(--ink-light); font-size:14.5px; line-height:1.6;">
+          <li>We think… / Probably… / Our AI believes…</li>
+          <li>Trust us.</li>
+          <li>Cutting-edge / innovative / leveraging synergies.</li>
+          <li>Disrupting [industry].</li>
+          <li>Amazing / exciting / revolutionary.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="src" style="margin-top:14px;">Source · <a href="#">Masterdoc v2 §7.4</a> · <a href="/docs/lessons.md">MKG_LESSONS.md</a></p>
+  </section>
+
+  <!-- ============ 07 ROADMAP ============ -->
+  <section class="panel" role="tabpanel" data-panel="roadmap">
+    <h2 class="section">90 days, internal-first.</h2>
+    <p class="lead">Internal-first sourcing, public-first publishing. Every Campaign in Cycles 002–004 comes from the umbrella; publishing is open so AI agents can cite us.</p>
+
+    <div class="week-grid" style="margin-top:14px;">
+      <div class="week">
+        <span class="wlab">Weeks 1–4</span>
+        <h4>Foundation + first artifact.</h4>
+        <ul>
+          <li>Apply schema v0.2 to live Supabase.</li>
+          <li>Stand up Campaign Teardown surface on the BKG sliver-launch record.</li>
+          <li>Nine internal campaigns committed with three sources each.</li>
+          <li>End of W4: publish BKG teardown publicly. Seed via one LinkedIn post. Leakage test #1.</li>
+        </ul>
+      </div>
+      <div class="week">
+        <span class="wlab">Weeks 5–8</span>
+        <h4>Density + two leakages.</h4>
+        <ul>
+          <li>Push to 30+ Campaign records, all cross-linked to ≥2 others.</li>
+          <li>Second public teardown: OKG Bloom Ledger documentary.</li>
+          <li>Anthropic conversation pre-seed — give them an artifact to point at.</li>
+          <li>MCP server registered on the umbrella federation index.</li>
+        </ul>
+      </div>
+      <div class="week">
+        <span class="wlab">Weeks 9–12</span>
+        <h4>First moat measurements.</h4>
+        <ul>
+          <li>Continue density toward 60 campaigns.</li>
+          <li>Re-run citation-health baseline. Goal: ≥1 MKG URL surfaces on long-tail queries.</li>
+          <li>Submit one teardown to one second-order surface (HN op-ed or marketing trade pub).</li>
+          <li>Cycle 005 brief drafted.</li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="rule">
+
+    <h2 class="section" style="font-size:22px;">The five metrics that report up.</h2>
+    <div class="grid-3" style="margin-top:14px;">
+      <div class="card"><h3>Citation health delta.</h3><p>Re-run four canonical questions + four long-tail. Count MKG URLs in top 10 web; count LLM citations. <span class="emphasis-italic">North-star.</span></p></div>
+      <div class="card"><h3>Cross-link density.</h3><p>Outbound links per Campaign (floor ≥2). Cross-garden links tracked separately. Federation moat layer 2.5.4.</p></div>
+      <div class="card"><h3>Source-triangle completeness.</h3><p>% of Campaigns with all three of Authority + Observation + Commerce sources. Below 90% = Critic escalation.</p></div>
+      <div class="card"><h3>RSI heartbeat freshness.</h3><p>Count of Campaigns updated in last 30d via programmatic ingestion. Without growth here, the garden is a brochure.</p></div>
+      <div class="card"><h3>MCP retrieval count.</h3><p>Distinct external agents that retrieved an MKG entity in the last cycle. Slope &gt; level.</p></div>
+      <div class="card"><h3>Compounding score.</h3><p>Single number reported every cycle. Cycle 001 baseline = <strong>254.6</strong>. Cycle 002 target = beat it.</p></div>
+    </div>
+    <p class="src" style="margin-top:14px;">Source · <a href="/docs/rsi-heartbeat-agents.md">RSI / Heartbeat / Agents brief</a> · <a href="/docs/internal-first-roadmap.md">Internal-first roadmap</a></p>
+  </section>
+
+  <!-- ============ 08 OPEN Q'S ============ -->
+  <section class="panel" role="tabpanel" data-panel="open">
+    <h2 class="section">Open questions.</h2>
+    <p class="lead">What needs decisions before MKG can ship Cycle 003. Answers committed during Chilly's iPhone session above; remaining items below.</p>
+
+    <div class="qbox">
+      <span class="qkey">Decided · Cycle 002</span>
+      <h4>Supabase: Architect drafts plan; Chilly applies.</h4>
+      <p>Existing project <span class="tech-strong">vlezoyalutexenbnzzui</span> (knowledge-gardens-prod). Migration plan ready. Chilly's step is one click in Studio (or one MCP call) to apply the migration SQL + paste env vars.</p>
+    </div>
+    <div class="qbox">
+      <span class="qkey">Decided · Cycle 002</span>
+      <h4>GitHub: <span class="tech-strong">knowledge-gardens-marketing</span> — create it.</h4>
+      <p>Repo confirmed. The <span class="tech-strong">website/</span> subfolder mirrors the TKG ship pattern — Vercel Root Directory points there.</p>
+    </div>
+    <div class="qbox">
+      <span class="qkey">Decided · Cycle 002</span>
+      <h4>Persistence: weekly heartbeat.</h4>
+      <p>Vercel Cron Sundays for cycle-close + citation health. Cowork scheduled tasks for monthly schema review and wedge expansion. Architect spawn = manual weekly.</p>
+    </div>
+    <div class="qbox">
+      <span class="qkey">Open</span>
+      <h4>Promote Agent commit authority.</h4>
+      <p>Does the Promote Agent commit directly to umbrella <span class="tech-strong">09_LESSONS.md</span>, or stage a PR for review? Recommend PR for the first 90 days; direct commit thereafter.</p>
+    </div>
+    <div class="qbox">
+      <span class="qkey">Open</span>
+      <h4>Default graph license.</h4>
+      <p>CC-BY-SA (Wikipedia model — share-alike) or CC-BY-NC (non-commercial — gates the Enterprise Data License)? The choice determines what the Machine Lane Enterprise tier actually licenses.</p>
+    </div>
+    <div class="qbox">
+      <span class="qkey">Open</span>
+      <h4>Public-lane CAC budget.</h4>
+      <p>The free Campaign Teardown tool is the gravity well. Initial seeding via the founders' own LinkedIn networks costs $0. Beyond that, do we run paid distribution? Recommend: zero spend through Cycle 005; revisit if citation health metric stalls.</p>
+    </div>
+    <div class="qbox">
+      <span class="qkey">Open</span>
+      <h4>Citation health test budget.</h4>
+      <p>Real LLM API calls: ~$20/mo at scale (4 LLMs × 10 questions × 1 weekly run). Recommend <span class="emphasis-italic">yes</span> — the cheapest moat-validation we'll ever buy.</p>
+    </div>
+    <div class="qbox">
+      <span class="qkey">Open</span>
+      <h4>External onboarding gate.</h4>
+      <p>When does MKG open to external customers? Masterdoc says post-MRR. Recommend sharper trigger: <strong>BKG at $100K MRR + HKG with 10 paying enterprise + MKG citation health ≥ 1 LLM cite per long-tail question</strong>. Test all three before opening.</p>
+    </div>
+    <div class="qbox">
+      <span class="qkey">Open</span>
+      <h4>MKG-specific brand mark.</h4>
+      <p>Per-garden palette adaptation (masterdoc §7.3) leaves MKG's accent "to be earned through Week 1 work." Current placeholder uses umbrella tree + observation eye. Commission an MKG-specific Midjourney mark Cycle 004?</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <footer class="colophon">
+    <div class="quote">Pressed at <span class="emphasis-italic">The Knowledge Gardens · Marketing Vertical</span>. Cycle 002 team brief assembled by 12 sub-agents (research / strategy / schema / critic / deploy) reporting to the Architect.</div>
+    <div class="tech-strip">CAT. NO. MKG-2026-TEAM-ATLAS-V1 · CYCLE 002 · 2026-05-10</div>
+  </footer>
+</div>
+
+<script>
+(() => {
+  const tabs = document.querySelectorAll(".tab");
+  const panels = document.querySelectorAll(".panel");
+  tabs.forEach(t => t.addEventListener("click", () => {
+    tabs.forEach(x => x.setAttribute("aria-selected", "false"));
+    panels.forEach(p => p.classList.remove("active"));
+    t.setAttribute("aria-selected", "true");
+    const target = document.querySelector(`.panel[data-panel="${t.dataset.tab}"]`);
+    target.classList.add("active");
+    if (window.matchMedia("(max-width: 767px)").matches) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }));
+})();
+</script>
+</body>
+</html>

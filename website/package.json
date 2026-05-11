@@ -1,0 +1,23 @@
+{
+  "name": "marketing-knowledge-garden",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Marketing Knowledge Garden — the canonical, AI-citable atlas of marketing in the agentic era. Sister to Builder's, Orchid, Health, Toxicology gardens.",
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "16.1.6",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.5",
+    "@types/react": "19.0.8",
+    "@types/react-dom": "19.0.3",
+    "typescript": "5.9.3"
+  }
+}

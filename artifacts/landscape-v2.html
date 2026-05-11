@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Marketing Knowledge Garden — Landscape v2 · The GEO/AEO Atlas</title>
+  <meta name="description" content="The canonical, AI-citable atlas of Generative Engine Optimization and Answer Engine Optimization platforms. Cycle 001 specimen plate from the Marketing Knowledge Garden." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Top-level Garden JSON-LD (collection) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "Marketing Knowledge Garden — GEO/AEO Atlas v0.1",
+    "description": "Verified taxonomy of Generative Engine Optimization (GEO) and Answer Engine Optimization (AEO) platforms, with positioning, funding, pricing, and primary citations.",
+    "url": "https://marketing.theknowledgegardens.com/landscape",
+    "creator": { "@type": "Organization", "name": "The Knowledge Gardens" },
+    "keywords": "GEO, AEO, AI search, brand visibility, ChatGPT citations, Perplexity, Gemini, AI marketing",
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "datePublished": "2026-05-09",
+    "version": "0.1"
+  }
+  </script>
+
+  <style>
+    :root {
+      color-scheme: light;
+      --parchment:    #f5f0e8;
+      --parchment-2:  #efe7d8;
+      --cream:        #FBF8F3;
+      --teal:         #1A5C5C;
+      --teal-deep:    #134848;
+      --copper:       #B87333;
+      --steel:        #71797E;
+      --ink:          #2C2C2C;
+      --line:         rgba(44, 44, 44, 0.18);
+      --line-strong:  rgba(44, 44, 44, 0.50);
+      --line-soft:    rgba(44, 44, 44, 0.10);
+      --tag-bg:       rgba(26, 92, 92, 0.08);
+      --tag-bg-copper:rgba(184, 115, 51, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+
+    body {
+      background:
+        radial-gradient(1200px 600px at 8% 5%, rgba(26,92,92,0.05), transparent 60%),
+        radial-gradient(900px 700px at 100% 100%, rgba(184,115,51,0.04), transparent 60%),
+        var(--parchment);
+      color: var(--ink);
+      font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+      font-size: 17px;
+      line-height: 1.55;
+      min-height: 100vh;
+      letter-spacing: 0.005em;
+    }
+
+    a { color: var(--teal); text-decoration: none; border-bottom: 1px solid var(--line); }
+    a:hover { color: var(--copper); border-bottom-color: var(--copper); }
+
+    .tech, .tech-label, .tech-link {
+      font-family: "Space Mono", ui-monospace, "SF Mono", Menlo, monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-weight: 400;
+    }
+    .tech-label { font-size: 11px; color: var(--steel); }
+    .tech-strong { font-size: 12px; color: var(--ink); font-weight: 700; }
+    .tech-link { font-size: 11px; color: var(--teal); border-bottom: 1px dotted var(--teal); }
+
+    .display-italic {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-style: italic;
+      font-weight: 500;
+      letter-spacing: -0.005em;
+    }
+
+    /* ============== Frame / Layout ============== */
+    .herbarium {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 56px 48px 96px;
+      position: relative;
+    }
+
+    /* Compass — orienting motif, top right, low opacity */
+    .compass {
+      position: absolute;
+      top: 32px;
+      right: 32px;
+      width: 132px;
+      height: 132px;
+      opacity: 0.085;
+      pointer-events: none;
+    }
+    .compass-rotor { animation: rotate-compass 220s linear infinite; transform-origin: 50% 50%; }
+    @keyframes rotate-compass { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) {
+      .compass-rotor { animation: none; }
+    }
+
+    /* Header */
+    header.masthead {
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+      padding: 28px 0 24px;
+      margin-bottom: 36px;
+      position: relative;
+    }
+    .masthead-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .garden-mark {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+    .garden-mark .crest {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: 22px;
+      color: var(--teal);
+    }
+    h1.title {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 56px;
+      line-height: 1;
+      margin: 0;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    h1.title .amp { color: var(--copper); font-weight: 400; }
+    .subtitle {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 22px;
+      line-height: 1.35;
+      color: var(--steel);
+      margin: 10px 0 0;
+      max-width: 720px;
+    }
+    .meta-strip {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--line);
+    }
+    .meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .meta-item .meta-label { font-size: 10px; }
+    .meta-item .meta-value {
+      font-family: "Space Mono", monospace;
+      font-size: 12px;
+      color: var(--ink);
+      letter-spacing: 0.06em;
+    }
+
+    /* Tabs */
+    nav.tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--ink);
+      margin: 36px 0 32px;
+      flex-wrap: wrap;
+    }
+    .tab {
+      background: transparent;
+      border: 1px solid var(--ink);
+      border-bottom: none;
+      border-right: none;
+      padding: 14px 22px;
+      cursor: pointer;
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--steel);
+      transition: background 120ms ease, color 120ms ease;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .tab:last-child { border-right: 1px solid var(--ink); }
+    .tab .tab-num { color: var(--copper); font-weight: 700; }
+    .tab[aria-selected="true"] {
+      background: var(--ink);
+      color: var(--cream);
+    }
+    .tab[aria-selected="true"] .tab-num { color: var(--copper); }
+    .tab:focus-visible { outline: 2px solid var(--copper); outline-offset: 2px; }
+
+    .panel { display: none; }
+    .panel.active { display: block; animation: fade-in 220ms ease-out; }
+    @keyframes fade-in { from { opacity: 0; transform: translateY(2px); } to { opacity: 1; transform: none; } }
+
+    /* Section headers */
+    h2.section-title {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 36px;
+      line-height: 1.05;
+      margin: 0 0 12px;
+      color: var(--ink);
+    }
+    .lead {
+      font-size: 19px;
+      line-height: 1.5;
+      max-width: 760px;
+      color: var(--ink);
+      margin: 0 0 32px;
+    }
+    .rule {
+      border: none;
+      border-top: 1px solid var(--ink);
+      margin: 36px 0;
+    }
+
+    /* Specimen plate (entity card) */
+    .plate-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(312px, 1fr));
+      gap: 22px;
+    }
+    .plate {
+      background: var(--cream);
+      border: 1px solid var(--ink);
+      box-shadow: 0 0 0 4px var(--parchment), 0 0 0 5px var(--ink);
+      padding: 18px 18px 16px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 220px;
+    }
+    .plate-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+    .plate-name {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 1.15;
+      color: var(--ink);
+      margin: 0;
+    }
+    .plate-cat {
+      font-family: "Space Mono", monospace;
+      font-size: 9.5px;
+      color: var(--steel);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      text-align: right;
+      line-height: 1.4;
+    }
+    .plate-cat .conf-h { color: var(--teal); }
+    .plate-cat .conf-m { color: var(--copper); }
+    .plate-cat .conf-l { color: var(--steel); }
+    .plate-pos {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: 16px;
+      line-height: 1.45;
+      color: var(--ink);
+      margin: 0;
+    }
+    .plate-attr {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      gap: 6px 12px;
+      font-size: 13px;
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 1px dashed var(--line);
+    }
+    .plate-attr dt {
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--steel);
+      align-self: center;
+    }
+    .plate-attr dd {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.35;
+    }
+    .plate-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 6px 0 0;
+    }
+    .tag {
+      font-family: "Space Mono", monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 3px 7px;
+      background: var(--tag-bg);
+      color: var(--teal-deep);
+      border: 1px solid rgba(26,92,92,0.18);
+    }
+    .tag.copper {
+      background: var(--tag-bg-copper);
+      color: var(--copper);
+      border-color: rgba(184,115,51,0.3);
+    }
+    .plate-cite {
+      margin-top: 4px;
+      font-family: "Space Mono", monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .plate-cite a { color: var(--teal); border-bottom: 1px dotted var(--teal); }
+
+    /* Tab 1 — Profile (intro / hero) */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
+    .definition-card {
+      border: 1px solid var(--ink);
+      padding: 24px 24px 20px;
+      background: var(--cream);
+      position: relative;
+    }
+    .definition-card::before {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border: 1px solid var(--line);
+      pointer-events: none;
+    }
+    .definition-card h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 26px;
+      margin: 0 0 8px;
+    }
+    .definition-card .term {
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--steel);
+    }
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: 1px solid var(--ink);
+      margin-top: 24px;
+    }
+    @media (max-width: 700px) { .stat-strip { grid-template-columns: repeat(2, 1fr); } }
+    .stat {
+      padding: 18px 16px;
+      border-right: 1px solid var(--line);
+      position: relative;
+    }
+    .stat:last-child { border-right: none; }
+    .stat .stat-num {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 44px;
+      line-height: 1;
+      color: var(--teal);
+      display: block;
+    }
+    .stat .stat-label {
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--steel);
+      display: block;
+      margin-top: 8px;
+    }
+
+    /* Tab 2 — Architecture */
+    .lanes {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: 1px solid var(--ink);
+      margin: 12px 0 32px;
+    }
+    @media (max-width: 980px) { .lanes { grid-template-columns: repeat(2, 1fr); } }
+    .lane {
+      padding: 22px 20px;
+      border-right: 1px solid var(--line);
+      position: relative;
+      background: var(--cream);
+    }
+    .lane:last-child { border-right: none; }
+    .lane .lane-num {
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.20em;
+      color: var(--copper);
+      text-transform: uppercase;
+    }
+    .lane h4 {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 26px;
+      margin: 4px 0 6px;
+      color: var(--ink);
+    }
+    .lane h4 .lane-tagline {
+      display: block;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 14px;
+      color: var(--steel);
+      margin-top: 2px;
+    }
+    .lane p { font-size: 14.5px; line-height: 1.48; margin: 8px 0 0; }
+    .lane .price {
+      margin-top: 14px;
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: var(--teal);
+      text-transform: uppercase;
+    }
+
+    /* Conveyor belt */
+    .conveyor-wrap {
+      margin: 36px 0 8px;
+      padding: 24px 0 16px;
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+      position: relative;
+    }
+    .conveyor-label {
+      position: absolute;
+      top: -10px;
+      left: 16px;
+      background: var(--parchment);
+      padding: 0 10px;
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.20em;
+      color: var(--steel);
+      text-transform: uppercase;
+    }
+    .conveyor-belt {
+      width: 100%;
+      height: 84px;
+      opacity: 0.85;
+    }
+    .conveyor-caption {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      color: var(--steel);
+      font-size: 15px;
+      text-align: center;
+      margin: 8px 0 0;
+    }
+
+    /* Spec callouts (typography / palette / dimensions) */
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin: 32px 0 8px;
+    }
+    @media (max-width: 800px) { .spec-grid { grid-template-columns: 1fr; } }
+    .spec {
+      border: 1px solid var(--ink);
+      padding: 20px 22px;
+      background: var(--cream);
+      position: relative;
+    }
+    .spec h5 {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 22px;
+      margin: 0 0 12px;
+    }
+    .swatch-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .swatch {
+      width: 78px;
+      height: 78px;
+      border: 1px solid var(--ink);
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 6px;
+      font-family: "Space Mono", monospace;
+      font-size: 9px;
+      letter-spacing: 0.10em;
+      color: var(--cream);
+      text-transform: uppercase;
+    }
+    .swatch.parchment { background: var(--parchment); color: var(--ink); }
+    .swatch.cream { background: var(--cream); color: var(--ink); }
+    .swatch.teal { background: var(--teal); }
+    .swatch.copper { background: var(--copper); }
+    .swatch.steel { background: var(--steel); }
+    .swatch.ink { background: var(--ink); }
+
+    .type-spec { display: flex; align-items: baseline; gap: 16px; margin: 8px 0; }
+    .type-spec .annot {
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      color: var(--steel);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .type-spec.cormorant { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 30px; }
+    .type-spec.spacemono { font-family: "Space Mono", monospace; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; }
+
+    /* Tab 3 — Intelligence (filterable plate grid) */
+    .filters {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin: 0 0 24px;
+      padding: 14px 16px;
+      border: 1px solid var(--ink);
+      background: var(--cream);
+    }
+    .filters .filter-label {
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--steel);
+    }
+    .chip {
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border: 1px solid var(--ink);
+      background: transparent;
+      cursor: pointer;
+      color: var(--ink);
+      transition: background 120ms ease, color 120ms ease;
+    }
+    .chip[aria-pressed="true"] { background: var(--ink); color: var(--cream); }
+    .chip:hover { background: var(--tag-bg); }
+    .chip[aria-pressed="true"]:hover { background: var(--ink); color: var(--cream); }
+    .filters .count {
+      margin-left: auto;
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: var(--teal);
+      text-transform: uppercase;
+    }
+
+    /* Tab 4 — Compare */
+    .compare-controls {
+      margin-bottom: 18px;
+      padding: 14px 16px;
+      border: 1px solid var(--ink);
+      background: var(--cream);
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .compare-controls select {
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      padding: 8px 10px;
+      border: 1px solid var(--ink);
+      background: var(--parchment);
+      color: var(--ink);
+      letter-spacing: 0.10em;
+    }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--ink);
+      background: var(--cream);
+      font-size: 14px;
+    }
+    .compare-table th, .compare-table td {
+      border: 1px solid var(--line);
+      padding: 12px 14px;
+      vertical-align: top;
+      text-align: left;
+    }
+    .compare-table th {
+      background: var(--parchment-2);
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--steel);
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+    .compare-table th.col-name {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 20px;
+      color: var(--ink);
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    .compare-table tbody td:first-child {
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      color: var(--steel);
+      text-transform: uppercase;
+      width: 130px;
+      background: var(--parchment-2);
+    }
+    .compare-table .pos {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+    }
+
+    /* Footer */
+    footer.colophon {
+      margin-top: 64px;
+      padding-top: 22px;
+      border-top: 1px solid var(--ink);
+      display: flex;
+      gap: 18px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: var(--steel);
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+    }
+    footer.colophon .tech-strip {
+      font-family: "Space Mono", monospace;
+      font-style: normal;
+      font-size: 10px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--steel);
+    }
+
+    /* Dimension annotations (decorative pen-style measurement marks) */
+    .dim {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      color: var(--steel);
+      text-transform: uppercase;
+    }
+    .dim::before, .dim::after {
+      content: "";
+      width: 18px;
+      height: 1px;
+      background: var(--steel);
+      display: inline-block;
+    }
+    .dim::before { box-shadow: 0 -3px 0 var(--steel), 0 3px 0 var(--steel); width: 1px; height: 8px; }
+    .dim::after  { box-shadow: 0 -3px 0 var(--steel), 0 3px 0 var(--steel); width: 1px; height: 8px; }
+
+    /* Specimen plate "PRESSED ON" annotation */
+    .pressed-on {
+      position: absolute;
+      bottom: -6px;
+      right: 8px;
+      background: var(--parchment);
+      padding: 0 6px;
+      font-family: "Space Mono", monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.18em;
+      color: var(--steel);
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 700px) {
+      .herbarium { padding: 32px 22px 64px; }
+      h1.title { font-size: 40px; }
+      .compass { width: 88px; height: 88px; top: 16px; right: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="herbarium">
+
+    <!-- COMPASS — orienting motif -->
+    <svg class="compass" viewBox="0 0 200 200" aria-hidden="true">
+      <defs>
+        <g id="compass-rose">
+          <circle cx="100" cy="100" r="92" fill="none" stroke="#2C2C2C" stroke-width="1.2"/>
+          <circle cx="100" cy="100" r="78" fill="none" stroke="#2C2C2C" stroke-width="0.6"/>
+          <circle cx="100" cy="100" r="58" fill="none" stroke="#1A5C5C" stroke-width="0.8"/>
+          <!-- Cardinal points -->
+          <polygon points="100,18 108,100 100,108 92,100" fill="#2C2C2C"/>
+          <polygon points="100,182 92,100 100,92 108,100" fill="#B87333"/>
+          <polygon points="18,100 100,92 108,100 100,108" fill="#2C2C2C"/>
+          <polygon points="182,100 100,108 92,100 100,92" fill="#2C2C2C"/>
+          <!-- Tick marks every 15deg -->
+          <g stroke="#2C2C2C" stroke-width="0.6">
+            <line x1="100" y1="14" x2="100" y2="22"/>
+            <line x1="186" y1="100" x2="178" y2="100"/>
+            <line x1="100" y1="186" x2="100" y2="178"/>
+            <line x1="14" y1="100" x2="22" y2="100"/>
+          </g>
+          <!-- Inner crosshair -->
+          <line x1="100" y1="60" x2="100" y2="140" stroke="#1A5C5C" stroke-width="0.5"/>
+          <line x1="60" y1="100" x2="140" y2="100" stroke="#1A5C5C" stroke-width="0.5"/>
+          <circle cx="100" cy="100" r="3" fill="#B87333"/>
+        </g>
+      </defs>
+      <g class="compass-rotor"><use href="#compass-rose"/></g>
+    </svg>
+
+    <!-- MASTHEAD -->
+    <header class="masthead">
+      <div class="masthead-row">
+        <div>
+          <div class="garden-mark">
+            <span class="crest">M</span>
+            <span class="tech-label">The Knowledge Gardens · Marketing Vertical</span>
+          </div>
+          <h1 class="title">Marketing<span class="amp"> &amp; </span>the Agentic Era</h1>
+          <p class="subtitle">A pressed-plate survey of the platforms that decide which brands AI cites — and the schema beneath them. Specimen Atlas v0.1, GEO/AEO wedge.</p>
+        </div>
+        <div style="text-align:right;">
+          <div class="tech-label" style="margin-bottom:6px;">Catalogue No.</div>
+          <div class="tech-strong">MKG-2026-LANDSCAPE-V2</div>
+          <div class="tech-label" style="margin-top:14px;">Issue</div>
+          <div class="tech-strong">CYCLE 001 · MAY 9 2026</div>
+        </div>
+      </div>
+
+      <div class="meta-strip">
+        <div class="meta-item">
+          <span class="tech-label meta-label">Tagline (locked)</span>
+          <span class="meta-value">The ground truth marketing AI cites.</span>
+        </div>
+        <div class="meta-item">
+          <span class="tech-label meta-label">Specimens (this plate)</span>
+          <span class="meta-value">40 verified</span>
+        </div>
+        <div class="meta-item">
+          <span class="tech-label meta-label">High confidence</span>
+          <span class="meta-value">31 / 40</span>
+        </div>
+        <div class="meta-item">
+          <span class="tech-label meta-label">Wedge</span>
+          <span class="meta-value">GEO · AEO · AI search</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- TABS -->
+    <nav class="tabs" role="tablist" aria-label="Marketing Species Experience">
+      <button class="tab" role="tab" aria-selected="true"  aria-controls="panel-profile"      id="tab-profile"      data-tab="profile"><span class="tab-num">01</span> Profile</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-architecture" id="tab-architecture" data-tab="architecture"><span class="tab-num">02</span> Architecture</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-intelligence" id="tab-intelligence" data-tab="intelligence"><span class="tab-num">03</span> Intelligence</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-compare"      id="tab-compare"      data-tab="compare"><span class="tab-num">04</span> Compare</button>
+    </nav>
+
+    <!-- PANEL 01 — PROFILE -->
+    <section class="panel active" role="tabpanel" id="panel-profile" aria-labelledby="tab-profile">
+      <h2 class="section-title">A category in formation.</h2>
+      <p class="lead">When a CMO, founder, or AI agent asks any LLM <em>"what's the best AI tool for X?"</em>, the answer should cite a neutral, taxonomic source. Today there is none. The Marketing Knowledge Garden is the canonical, AI-citable, commerce-integrated knowledge graph of how marketing actually works in the agentic era. This first specimen plate maps the <em>Generative Engine Optimization</em> and <em>Answer Engine Optimization</em> wedge — the youngest, most fragmented, and most defensible ground.</p>
+
+      <div class="hero-grid">
+        <div class="definition-card">
+          <span class="term">Definition · Specimen 001</span>
+          <h3>Generative Engine Optimization</h3>
+          <p style="margin: 6px 0 12px;">The discipline of structuring brand presence — content, schema, citations, governance — so that large language models cite the brand when answering user questions across ChatGPT, Claude, Perplexity, Gemini, and AI-search modes inside Google and Microsoft products.</p>
+          <span class="term">Sister term</span>
+          <h3 style="margin-top:6px;">Answer Engine Optimization</h3>
+          <p style="margin: 6px 0 0;">Often used interchangeably with GEO; pragmatically AEO is more buyer-friendly (the question framing) while GEO is the engineer-facing label (the engine framing). Both refer to the same wedge.</p>
+        </div>
+
+        <div>
+          <div class="stat-strip">
+            <div class="stat"><span class="stat-num">40</span><span class="stat-label">Specimens</span></div>
+            <div class="stat"><span class="stat-num">$540M+</span><span class="stat-label">Combined Funding</span></div>
+            <div class="stat"><span class="stat-num">11</span><span class="stat-label">EU Pure-plays</span></div>
+            <div class="stat"><span class="stat-num">0</span><span class="stat-label">LATAM Native</span></div>
+          </div>
+
+          <div style="margin-top:22px; padding:16px 18px; border:1px solid var(--ink); background:var(--cream);">
+            <span class="tech-label">Wedge thesis</span>
+            <p class="display-italic" style="font-size:18px; margin:6px 0 0; color:var(--ink);">Every search result for &ldquo;best GEO platforms&rdquo; today is a vendor blog or affiliate listicle. There is no neutral, AI-citable taxonomic source. The MKG fills that vacuum.</p>
+          </div>
+
+          <div style="margin-top:18px;">
+            <span class="dim">Plate margin · 38pt</span>
+          </div>
+        </div>
+      </div>
+
+      <hr class="rule">
+
+      <h2 class="section-title" style="font-size:28px;">Three featured specimens</h2>
+      <p class="lead" style="font-size:16px;">Selected by capital deployed and category influence. Full set lives on the Intelligence tab.</p>
+
+      <div class="plate-grid" id="featured-plates"></div>
+    </section>
+
+    <!-- PANEL 02 — ARCHITECTURE -->
+    <section class="panel" role="tabpanel" id="panel-architecture" aria-labelledby="tab-architecture">
+      <h2 class="section-title">The four lanes of a Garden.</h2>
+      <p class="lead">Every Knowledge Garden runs the same four-lane factory. Public Lane is the gravity well; Professional Lane is monthly revenue; Admin Lane is enterprise cash; Machine Lane is the moat. Lanes share a knowledge graph but address distinct buyers and economics.</p>
+
+      <div class="lanes" role="list" aria-label="Four-lane architecture">
+        <div class="lane" role="listitem">
+          <span class="lane-num">Lane 01</span>
+          <h4>Public<span class="lane-tagline">Gravity Well</span></h4>
+          <p>Free AI tool finder, GEO scorecard, prompt-citation checker, vertical playbooks. Captures the long tail of searches and AI citations.</p>
+          <p class="price">Zero CAC · Affiliate flow</p>
+        </div>
+        <div class="lane" role="listitem">
+          <span class="lane-num">Lane 02</span>
+          <h4>Professional<span class="lane-tagline">Engagement</span></h4>
+          <p>Subscription intelligence dashboard for in-house marketers and agencies. Weekly Garden Briefing. Vendor diligence reports.</p>
+          <p class="price">$49 – $499 / mo</p>
+        </div>
+        <div class="lane" role="listitem">
+          <span class="lane-num">Lane 03</span>
+          <h4>Admin<span class="lane-tagline">Cash</span></h4>
+          <p>Vendor intelligence, M&amp;A target maps, category benchmarking, custom landscape reports for enterprises, PE firms, agency holdcos.</p>
+          <p class="price">$5K – $50K / mo</p>
+        </div>
+        <div class="lane" role="listitem">
+          <span class="lane-num">Lane 04</span>
+          <h4>Machine<span class="lane-tagline">Defensibility</span></h4>
+          <p>API + MCP server + JSON-LD feeds + data licensing. AI agents and martech platforms reach into the graph; we become infrastructure.</p>
+          <p class="price">$20K – $100K / yr</p>
+        </div>
+      </div>
+
+      <!-- Conveyor belt — the Public → Machine pipeline -->
+      <div class="conveyor-wrap">
+        <span class="conveyor-label">Conveyor belt · Public → Machine</span>
+        <svg class="conveyor-belt" viewBox="0 0 1200 84" preserveAspectRatio="none" aria-hidden="true">
+          <!-- Belt rails -->
+          <line x1="0" y1="20" x2="1200" y2="20" stroke="#2C2C2C" stroke-width="1"/>
+          <line x1="0" y1="64" x2="1200" y2="64" stroke="#2C2C2C" stroke-width="1"/>
+          <!-- Hash slats -->
+          <g stroke="#71797E" stroke-width="0.6">
+            <line x1="40"   y1="20" x2="40"   y2="64"/>
+            <line x1="120"  y1="20" x2="120"  y2="64"/>
+            <line x1="200"  y1="20" x2="200"  y2="64"/>
+            <line x1="280"  y1="20" x2="280"  y2="64"/>
+            <line x1="360"  y1="20" x2="360"  y2="64"/>
+            <line x1="440"  y1="20" x2="440"  y2="64"/>
+            <line x1="520"  y1="20" x2="520"  y2="64"/>
+            <line x1="600"  y1="20" x2="600"  y2="64"/>
+            <line x1="680"  y1="20" x2="680"  y2="64"/>
+            <line x1="760"  y1="20" x2="760"  y2="64"/>
+            <line x1="840"  y1="20" x2="840"  y2="64"/>
+            <line x1="920"  y1="20" x2="920"  y2="64"/>
+            <line x1="1000" y1="20" x2="1000" y2="64"/>
+            <line x1="1080" y1="20" x2="1080" y2="64"/>
+            <line x1="1160" y1="20" x2="1160" y2="64"/>
+          </g>
+          <!-- Pulleys -->
+          <circle cx="22"   cy="42" r="14" fill="none" stroke="#2C2C2C" stroke-width="1"/>
+          <circle cx="22"   cy="42" r="3"  fill="#B87333"/>
+          <circle cx="1178" cy="42" r="14" fill="none" stroke="#2C2C2C" stroke-width="1"/>
+          <circle cx="1178" cy="42" r="3"  fill="#B87333"/>
+          <!-- Lane markers -->
+          <g font-family="Space Mono, monospace" font-size="10" fill="#71797E" letter-spacing="2">
+            <text x="160"  y="14">PUBLIC</text>
+            <text x="460"  y="14">PROFESSIONAL</text>
+            <text x="800"  y="14">ADMIN</text>
+            <text x="1080" y="14">MACHINE</text>
+          </g>
+          <g font-family="Cormorant Garamond, serif" font-style="italic" font-size="13" fill="#1A5C5C">
+            <text x="160"  y="80">visitors</text>
+            <text x="460"  y="80">subscribers</text>
+            <text x="800"  y="80">enterprises</text>
+            <text x="1080" y="80">AI agents</text>
+          </g>
+          <!-- Direction arrow -->
+          <g stroke="#B87333" stroke-width="1.4" fill="none">
+            <line x1="160" y1="42" x2="1060" y2="42"/>
+            <polyline points="1052,36 1062,42 1052,48"/>
+          </g>
+        </svg>
+        <p class="conveyor-caption">A single visitor journeys from free tool → subscription dashboard → enterprise contract → API consumer.</p>
+      </div>
+
+      <hr class="rule">
+
+      <h2 class="section-title" style="font-size:28px;">Brand spec</h2>
+      <p class="lead" style="font-size:16px;">Sacred rules inherited from the Knowledge Gardens masterdoc Section 4. Violate any and the work is rejected.</p>
+
+      <div class="spec-grid">
+        <div class="spec">
+          <h5>Palette</h5>
+          <div class="swatch-row">
+            <div class="swatch parchment">#F5F0E8</div>
+            <div class="swatch cream">#FBF8F3</div>
+            <div class="swatch teal">#1A5C5C</div>
+            <div class="swatch copper">#B87333</div>
+            <div class="swatch steel">#71797E</div>
+            <div class="swatch ink">#2C2C2C</div>
+          </div>
+          <p style="margin-top:10px; font-size:14.5px;">Background is parchment. Always. Per-entity accent colors override the copper/teal pairing on individual Species pages.</p>
+        </div>
+
+        <div class="spec">
+          <h5>Type</h5>
+          <div class="type-spec cormorant">
+            <span>Cormorant Garamond, italic.</span>
+            <span class="annot">Display · 56 / 36 / 26 pt</span>
+          </div>
+          <div class="type-spec spacemono">
+            <span>Space Mono, uppercase, wide-tracked</span>
+            <span class="annot">Tech labels · 10–12pt · 0.18em</span>
+          </div>
+          <p style="margin-top:10px; font-size:14.5px;">No system fonts in production. Cormorant Garamond italic carries display weight; Space Mono carries metadata.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PANEL 03 — INTELLIGENCE -->
+    <section class="panel" role="tabpanel" id="panel-intelligence" aria-labelledby="tab-intelligence">
+      <h2 class="section-title">The full plate · 40 specimens.</h2>
+      <p class="lead">Every entity in the GEO/AEO wedge with positioning, HQ, funding, primary buyer, and a primary citation URL. Filter by region or buyer to narrow. Each plate emits valid JSON-LD for AI agents.</p>
+
+      <div class="filters" role="group" aria-label="Filter plates">
+        <span class="filter-label">Region</span>
+        <button class="chip" data-filter="region" data-value="all" aria-pressed="true">All</button>
+        <button class="chip" data-filter="region" data-value="usa" aria-pressed="false">USA</button>
+        <button class="chip" data-filter="region" data-value="europe" aria-pressed="false">Europe</button>
+        <button class="chip" data-filter="region" data-value="other" aria-pressed="false">Other</button>
+
+        <span class="filter-label" style="margin-left:18px;">Buyer</span>
+        <button class="chip" data-filter="buyer" data-value="all" aria-pressed="true">All</button>
+        <button class="chip" data-filter="buyer" data-value="enterprise" aria-pressed="false">Enterprise</button>
+        <button class="chip" data-filter="buyer" data-value="agency" aria-pressed="false">Agency</button>
+        <button class="chip" data-filter="buyer" data-value="smb" aria-pressed="false">SMB / Solo</button>
+
+        <span class="filter-label" style="margin-left:18px;">Confidence</span>
+        <button class="chip" data-filter="conf" data-value="all" aria-pressed="true">All</button>
+        <button class="chip" data-filter="conf" data-value="high" aria-pressed="false">High</button>
+        <button class="chip" data-filter="conf" data-value="medium" aria-pressed="false">Medium</button>
+
+        <span class="count" id="count-strip">39 / 39 visible</span>
+      </div>
+
+      <div class="plate-grid" id="all-plates"></div>
+    </section>
+
+    <!-- PANEL 04 — COMPARE -->
+    <section class="panel" role="tabpanel" id="panel-compare" aria-labelledby="tab-compare">
+      <h2 class="section-title">Side-by-side comparison.</h2>
+      <p class="lead">Pick up to four specimens to compare positioning, funding, pricing, primary buyer, and integrations. Designed for agency RFPs and enterprise diligence.</p>
+
+      <div class="compare-controls">
+        <span class="filter-label">Specimens</span>
+        <select id="cmp-1"></select>
+        <select id="cmp-2"></select>
+        <select id="cmp-3"></select>
+        <select id="cmp-4"></select>
+      </div>
+
+      <table class="compare-table" id="compare-table" aria-label="Side-by-side specimen comparison">
+        <thead><tr id="cmp-head"></tr></thead>
+        <tbody id="cmp-body"></tbody>
+      </table>
+    </section>
+
+    <!-- COLOPHON -->
+    <footer class="colophon">
+      <div>Pressed at <em>The Knowledge Gardens · Marketing Vertical</em>. Specimens verified by research-1 sub-agent, dispatch cycle-001-job-2. Schema by schema-1, dispatch cycle-001-job-1.</div>
+      <div class="tech-strip">CAT. NO. MKG-2026-LANDSCAPE-V2 · ISSUE 001 · 2026-05-09</div>
+    </footer>
+  </div>
+
+  <!-- Per-entity JSON-LD — emitted programmatically below -->
+  <div id="jsonld-cabinet" hidden></div>
+
+  <script>
+  (() => {
+    const ENTITIES = [
+      // The 39 entities, mirrored from data/entities-geo-aeo-cycle001.json
+      // Trimmed properties for runtime; full JSON ships in /data/.
+      {n:"Profound",                  url:"https://www.tryprofound.com",                pos:"Enterprise AI search analytics across ChatGPT, Perplexity, Gemini.", hq:"New York, USA",         region:"usa",    buyer:"enterprise", buyerLabel:"Enterprise brand / SEO", funding:"Series C · $155M", price:"Enterprise", conf:"high",   cite:"https://www.tryprofound.com/blog/series-b"},
+      {n:"AirOps",                    url:"https://www.airops.com",                     pos:"Content engineering platform for AI search.",                       hq:"San Francisco, USA",    region:"usa",    buyer:"enterprise", buyerLabel:"In-house content / SEO", funding:"Series B · $60M",  price:"Subscription", conf:"high",   cite:"https://www.businesswire.com/news/home/20251110823725/en/AirOps-Raises-$40M-to-Redefine-How-Brands-Compete-in-the-Era-of-AI-Search"},
+      {n:"Bluefish AI",               url:"https://www.bluefishai.com",                 pos:"Enterprise AI marketing for Fortune 500 governance and brand safety.", hq:"New York, USA",       region:"usa",    buyer:"enterprise", buyerLabel:"Fortune 500 CMO",        funding:"Series B · $68M",  price:"Enterprise",   conf:"high",   cite:"https://www.prnewswire.com/news-releases/bluefish-raises-43-million-series-b-to-power-agentic-marketing-for-the-fortune-500-302741124.html"},
+      {n:"Brandlight",                url:"https://www.brandlight.ai",                  pos:"Cross-engine governance for ChatGPT, AI Overviews, AI surfaces.",   hq:"New York, USA",         region:"usa",    buyer:"enterprise", buyerLabel:"Enterprise CMO",         funding:"Series A · $35.75M", price:"Enterprise", conf:"high",  cite:"https://www.prnewswire.com/news-releases/the-ai-market-shelf-just-got-bigger-brandlight-raises-30m-to-continue-leading-enterprise-cmos-into-the-era-of-ai-native-ads-302684759.html"},
+      {n:"Evertune",                  url:"https://www.evertune.ai",                    pos:"Enterprise GEO with statistically significant brand-perception sampling.", hq:"New York, USA", region:"usa",   buyer:"enterprise", buyerLabel:"Fortune 500 CMO",        funding:"Series A · $20M",  price:"Enterprise",   conf:"high",   cite:"https://www.adexchanger.com/marketers/meet-evertune-a-gen-ai-startup-founded-by-trade-desk-vets/"},
+      {n:"Scrunch AI",                url:"https://scrunch.com",                        pos:"Agent Experience Platform — AI-ready versions of sites for LLMs.",   hq:"Salt Lake City, USA",  region:"usa",    buyer:"enterprise", buyerLabel:"Enterprise marketing",   funding:"Series A · $19M",  price:"Subscription", conf:"high",   cite:"https://techcrunch.com/2025/03/04/scrunch-ai-is-helping-companies-stand-out-in-ai-search/"},
+      {n:"AthenaHQ",                  url:"https://athenahq.ai",                        pos:"AI SEO platform for GEO and AEO across major LLMs.",                hq:"San Francisco, USA",    region:"usa",    buyer:"agency",     buyerLabel:"In-house SEO / brand",   funding:"Seed · $2.7M",     price:"Subscription", conf:"high",   cite:"https://www.ycombinator.com/companies/athenahq"},
+      {n:"Goodie",                    url:"https://higoodie.com",                       pos:"All-in-one AEO for monitoring and optimizing brand presence.",      hq:"New York, USA",         region:"usa",    buyer:"agency",     buyerLabel:"In-house SEO / brand",   funding:"Bootstrapped",      price:"Subscription", conf:"high",   cite:"https://higoodie.com/about-us"},
+      {n:"BrandRank.AI",              url:"https://www.brandrank.ai",                   pos:"Brand visibility, vulnerability, and content readiness scoring.",   hq:"Cincinnati, USA",       region:"usa",    buyer:"enterprise", buyerLabel:"PR / brand reputation",  funding:"Seed · $1.2M",     price:"Subscription", conf:"high",   cite:"https://www.brandrank.ai/who-we-are"},
+      {n:"Gauge",                     url:"https://www.withgauge.com",                  pos:"AI visibility + agentic content engine + AI analyst.",              hq:"San Francisco, USA",    region:"usa",    buyer:"agency",     buyerLabel:"Growth marketing",       funding:"Pre-seed · $0.5M", price:"Subscription", conf:"high",   cite:"https://www.ycombinator.com/companies/gauge"},
+      {n:"Knowatoa",                  url:"https://knowatoa.com",                       pos:"AI search analytics tracking brand mentions across major LLMs.",   hq:"Virginia Beach, USA",   region:"usa",    buyer:"smb",        buyerLabel:"SMB / SEO professional", funding:"Bootstrapped",      price:"Freemium",     conf:"high",   cite:"https://knowatoa.com/about"},
+      {n:"Quattr",                    url:"https://www.quattr.com",                     pos:"Unified SEO + AEO + GEO workflow.",                                  hq:"Palo Alto, USA",        region:"usa",    buyer:"enterprise", buyerLabel:"In-house SEO",           funding:"Seed · $7.12M",    price:"Subscription", conf:"high",   cite:"https://www.crunchbase.com/organization/quattr-inc"},
+      {n:"Rankability",               url:"https://www.rankability.com",                pos:"AI visibility + rank tracking + white-label agency reports.",       hq:"St Louis, USA",         region:"usa",    buyer:"agency",     buyerLabel:"SEO agency",             funding:"Bootstrapped",      price:"Subscription", conf:"high",   cite:"https://www.rankability.com/about/"},
+      {n:"Writesonic",                url:"https://writesonic.com",                     pos:"All-in-one SEO + GEO across ChatGPT, Perplexity, AI Overviews.",   hq:"San Francisco, USA",    region:"usa",    buyer:"smb",        buyerLabel:"SMB / agency",           funding:"Series A · $2.6M", price:"Freemium",     conf:"high",   cite:"https://writesonic.com/generative-engine-optimization-geo"},
+      {n:"Frase",                     url:"https://www.frase.io",                       pos:"Dual SEO + GEO scoring system.",                                    hq:"Boston, USA",           region:"usa",    buyer:"agency",     buyerLabel:"Content / SEO",          funding:"Acquired",          price:"Subscription", conf:"high",   cite:"https://www.frase.io/blog/what-is-generative-engine-optimization-geo"},
+      {n:"Semrush AI Toolkit",        url:"https://www.semrush.com/ai-seo/overview/",   pos:"Daily AI visibility tracking module within Semrush.",                hq:"Boston, USA",           region:"usa",    buyer:"enterprise", buyerLabel:"SMB / mid-market SEO",   funding:"Public · NYSE: SEMR", price:"Subscription", conf:"high", cite:"https://www.semrush.com/blog/top-ai-powered-semrush-features/"},
+      {n:"HubSpot AEO",               url:"https://www.hubspot.com/products/aeo",       pos:"CRM-driven AEO with AEO Grader + prompt suggestions.",              hq:"Cambridge, USA",        region:"usa",    buyer:"enterprise", buyerLabel:"In-house marketing",     funding:"Public · NYSE: HUBS", price:"Subscription", conf:"high", cite:"https://www.hubspot.com/company-news/hubspot-aeo"},
+      {n:"Adobe LLM Optimizer",       url:"https://business.adobe.com/products/llm-optimizer.html", pos:"Generative AI-first enterprise GEO/AEO application.",   hq:"San Jose, USA",         region:"usa",    buyer:"enterprise", buyerLabel:"Enterprise digital exp.", funding:"Public · NASDAQ: ADBE", price:"Enterprise", conf:"high", cite:"https://www.techtarget.com/searchcustomerexperience/news/366626187/Adobe-takes-on-AI-search-optimization-with-LLM-Optimizer"},
+      {n:"Conductor (AEO)",           url:"https://www.conductor.com/academy/ai-hub/",  pos:"Enterprise AEO + AgentStack LLM orchestration.",                    hq:"New York, USA",         region:"usa",    buyer:"enterprise", buyerLabel:"Enterprise SEO / content", funding:"PE-backed",       price:"Enterprise",   conf:"high",   cite:"https://www.conductor.com/alternative-to/brightedge/"},
+      {n:"BrightEdge AI Catalyst",    url:"https://www.brightedge.com/ai-catalyst",     pos:"Enterprise AI Overview monitoring + citation recs.",                hq:"Foster City, USA",      region:"usa",    buyer:"enterprise", buyerLabel:"Enterprise SEO",         funding:"Late stage · $62M", price:"Enterprise",  conf:"high",   cite:"https://www.brightedge.com/blog/introducing-brightedge-ai-catalyst-innovating-give-you-complete-search-and-ai-visibility"},
+      {n:"Meltwater GenAI Lens",      url:"https://www.meltwater.com/en/products/genai-lens", pos:"PR-oriented LLM visibility + competitor narrative tracking.",  hq:"San Francisco, USA",   region:"usa",    buyer:"enterprise", buyerLabel:"PR / communications",     funding:"Public",             price:"Enterprise",   conf:"high",   cite:"https://www.meltwater.com/en/about/press-releases/meltwater-debuts-industry-first-genai-lens"},
+      {n:"SE Visible",                url:"https://visible.seranking.com",              pos:"Standalone AEO from SE Ranking with sentiment analysis.",           hq:"Palo Alto, USA",        region:"usa",    buyer:"agency",     buyerLabel:"In-house SEO / agency",   funding:"Bootstrapped",      price:"Subscription", conf:"high",   cite:"https://visible.seranking.com/"},
+
+      {n:"Peec AI",                   url:"https://peec.ai",                            pos:"AI search analytics for marketing teams across major LLMs.",        hq:"Berlin, Germany",       region:"europe", buyer:"agency",     buyerLabel:"In-house marketing / agency", funding:"Series A · $29M", price:"Subscription", conf:"high",   cite:"https://www.eu-startups.com/2025/11/berlins-peec-ai-lands-e18-million-as-demand-grows-for-ai-based-brand-visibility-tools/"},
+      {n:"Otterly.AI",                url:"https://otterly.ai",                         pos:"AI search monitoring across six AI platforms.",                     hq:"Persenbeug, Austria",   region:"europe", buyer:"agency",     buyerLabel:"SEO professional / brand", funding:"Bootstrapped",     price:"Freemium",     conf:"high",   cite:"https://otterly.ai/imprint"},
+      {n:"Promptwatch",               url:"https://promptwatch.com",                    pos:"Citation dataset of 1.11B + 10-platform tracking.",                 hq:"Amsterdam, Netherlands", region:"europe", buyer:"agency",   buyerLabel:"SEO professional / agency", funding:"Seed · $1.34M",   price:"Subscription", conf:"high",   cite:"https://siliconcanals.com/arches-capital-backs-promptwatch-in-1-2m/"},
+      {n:"ZipTie.dev",                url:"https://ziptie.dev",                         pos:"UI scraping that simulates real user AI search behavior.",          hq:"Wrocław, Poland",       region:"europe", buyer:"agency",     buyerLabel:"SEO professional / agency", funding:"Bootstrapped",     price:"Subscription", conf:"high",   cite:"https://ziptie.dev/about-us/"},
+      {n:"Superlines",                url:"https://www.superlines.io",                  pos:"AI search intelligence across 10+ AI platforms.",                   hq:"Helsinki, Finland",     region:"europe", buyer:"agency",     buyerLabel:"Agency / brand",          funding:"Bootstrapped",      price:"Subscription", conf:"high",   cite:"https://www.superlines.io/about-us"},
+      {n:"Mangools AI Search Watcher",url:"https://mangools.com/ai-search-watcher",     pos:"Affordable LLM rank tracker (Mangools add-on).",                   hq:"Bratislava, Slovakia",  region:"europe", buyer:"smb",        buyerLabel:"Solo marketer / SMB",     funding:"Bootstrapped",      price:"Subscription", conf:"high",   cite:"https://mangools.com/ai-search-watcher/plans-and-pricing"},
+      {n:"Surfer SEO (AI Tracker)",   url:"https://surferseo.com",                      pos:"Content optimization with AI Tracker add-on.",                      hq:"Wrocław, Poland",       region:"europe", buyer:"agency",     buyerLabel:"Content / SEO",           funding:"Bootstrapped",      price:"Subscription", conf:"high",   cite:"https://surferseo.com/"},
+      {n:"Nightwatch",                url:"https://nightwatch.io",                      pos:"Search intelligence + AI visibility module.",                       hq:"Ljubljana, Slovenia",   region:"europe", buyer:"agency",     buyerLabel:"SEO agency / SMB",        funding:"Bootstrapped",      price:"Subscription", conf:"high",   cite:"https://nightwatch.io/ai-tracking/"},
+      {n:"Searchable.ai",             url:"https://searchable.ai",                      pos:"AI visibility + Prompt Intelligence + crawlability checks.",        hq:"London, UK",            region:"europe", buyer:"agency",     buyerLabel:"In-house brand / SEO",    funding:"Seed · $4M",        price:"Subscription", conf:"medium", cite:"https://www.crunchbase.com/organization/searchable-ai"},
+      {n:"LLM Pulse",                 url:"https://llmpulse.ai",                        pos:"All-in-one AI visibility + reputation tracking.",                   hq:"Spain",                 region:"europe", buyer:"agency",     buyerLabel:"In-house SEO / brand",    funding:"Bootstrapped",      price:"Subscription", conf:"medium", cite:"https://llmpulse.ai/about"},
+      {n:"Rankscale",                 url:"https://rankscale.ai",                       pos:"Topic and query visibility benchmarking.",                          hq:"Vienna, Austria",       region:"europe", buyer:"smb",        buyerLabel:"SEO professional / SMB",  funding:"Bootstrapped",      price:"Subscription", conf:"medium", cite:"https://rankscale.ai/"},
+
+      {n:"Ahrefs Brand Radar",        url:"https://ahrefs.com/brand-radar",             pos:"AI visibility module within Ahrefs across 6 AI surfaces.",          hq:"Singapore",             region:"other",  buyer:"enterprise", buyerLabel:"In-house SEO / brand",    funding:"Bootstrapped",      price:"Subscription", conf:"high",   cite:"https://ahrefs.com/brand-radar"},
+
+      {n:"Trakkr",                    url:"https://trakkr.ai",                          pos:"AI search analytics across 8 AI models with prioritized actions.", hq:"Undisclosed",           region:"other",  buyer:"smb",        buyerLabel:"Startup / SMB marketing", funding:"Bootstrapped",      price:"Freemium",     conf:"medium", cite:"https://trakkr.ai/"},
+      {n:"RivalSee",                  url:"https://www.rivalsee.com",                   pos:"AI search visibility + GEO dashboard for businesses and agencies.",hq:"Undisclosed",           region:"other",  buyer:"agency",     buyerLabel:"Agency / SMB",            funding:"Bootstrapped",      price:"Subscription", conf:"medium", cite:"https://www.rivalsee.com/"},
+      {n:"Omnia",                     url:"https://www.useomnia.com",                   pos:"AI visibility software for marketing teams.",                       hq:"Undisclosed",           region:"other",  buyer:"agency",     buyerLabel:"In-house marketing",      funding:"Bootstrapped",      price:"Subscription", conf:"medium", cite:"https://www.useomnia.com/"},
+      {n:"Airefs",                    url:"https://getairefs.com",                      pos:"URL-level citation tracking + Reddit keyword monitoring.",          hq:"Undisclosed",           region:"other",  buyer:"smb",        buyerLabel:"SMB / SEO professional",  funding:"Bootstrapped",      price:"Subscription", conf:"medium", cite:"https://getairefs.com/blog/best-aeo-tools/"},
+      {n:"GetMint",                   url:"https://getmint.ai",                         pos:"GEO platform for monitoring and growing visibility across LLMs.",   hq:"Undisclosed",           region:"other",  buyer:"smb",        buyerLabel:"SMB / SEO professional",  funding:"Bootstrapped",      price:"Subscription", conf:"medium", cite:"https://getmint.ai/"},
+      {n:"LLMrefs",                   url:"https://llmrefs.com",                        pos:"AI SEO keyword rank tracker across major LLMs.",                    hq:"Undisclosed",           region:"other",  buyer:"agency",     buyerLabel:"International agency",    funding:"Bootstrapped",      price:"Freemium",     conf:"medium", cite:"https://llmrefs.com/about"}
+    ];
+
+    const FEATURED = ["Profound", "Bluefish AI", "Peec AI"];
+
+    function plateHTML(e, idx) {
+      const confClass = e.conf === "high" ? "conf-h" : (e.conf === "medium" ? "conf-m" : "conf-l");
+      const cat = `MKG-001-GEO-${String(idx + 1).padStart(3, "0")}`;
+      const tagBuyer = `<span class="tag copper">${e.buyer.toUpperCase()}</span>`;
+      return `
+        <article class="plate" data-region="${e.region}" data-buyer="${e.buyer}" data-conf="${e.conf}" aria-label="${e.n} specimen plate">
+          <div class="plate-head">
+            <h3 class="plate-name">${e.n}</h3>
+            <div class="plate-cat">CAT. NO.<br>${cat}<br><span class="${confClass}">CONF · ${e.conf.toUpperCase()}</span></div>
+          </div>
+          <p class="plate-pos">${e.pos}</p>
+          <dl class="plate-attr">
+            <dt>HQ</dt>      <dd>${e.hq}</dd>
+            <dt>Funding</dt> <dd>${e.funding}</dd>
+            <dt>Pricing</dt> <dd>${e.price}</dd>
+            <dt>Buyer</dt>   <dd>${e.buyerLabel}</dd>
+          </dl>
+          <div class="plate-tags">${tagBuyer}<span class="tag">${e.region.toUpperCase()}</span></div>
+          <div class="plate-cite">Cite · <a href="${e.cite}" target="_blank" rel="noopener">primary source</a></div>
+          <span class="pressed-on">Pressed · 2026-05-09</span>
+        </article>`;
+    }
+
+    function jsonLDFor(e) {
+      return {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "applicationCategory": "BusinessApplication",
+        "name": e.n,
+        "url": e.url,
+        "description": e.pos,
+        "address": { "@type": "PostalAddress", "addressLocality": e.hq },
+        "sameAs": [e.cite],
+        "additionalProperty": [
+          { "@type": "PropertyValue", "name": "funding", "value": e.funding },
+          { "@type": "PropertyValue", "name": "pricing_model", "value": e.price },
+          { "@type": "PropertyValue", "name": "primary_buyer", "value": e.buyerLabel },
+          { "@type": "PropertyValue", "name": "confidence", "value": e.conf }
+        ]
+      };
+    }
+
+    // ---- Render featured plates (Profile tab) ----
+    const featuredEl = document.getElementById("featured-plates");
+    FEATURED.forEach((name) => {
+      const idx = ENTITIES.findIndex(x => x.n === name);
+      if (idx >= 0) featuredEl.insertAdjacentHTML("beforeend", plateHTML(ENTITIES[idx], idx));
+    });
+
+    // ---- Render full grid (Intelligence tab) ----
+    const allEl = document.getElementById("all-plates");
+    ENTITIES.forEach((e, i) => allEl.insertAdjacentHTML("beforeend", plateHTML(e, i)));
+
+    // ---- Emit JSON-LD per entity ----
+    const cabinet = document.getElementById("jsonld-cabinet");
+    ENTITIES.forEach((e) => {
+      const s = document.createElement("script");
+      s.type = "application/ld+json";
+      s.textContent = JSON.stringify(jsonLDFor(e));
+      cabinet.appendChild(s);
+    });
+
+    // ---- Tabs ----
+    const tabs = document.querySelectorAll(".tab");
+    const panels = document.querySelectorAll(".panel");
+    tabs.forEach(t => t.addEventListener("click", () => {
+      tabs.forEach(x => x.setAttribute("aria-selected", "false"));
+      panels.forEach(p => p.classList.remove("active"));
+      t.setAttribute("aria-selected", "true");
+      const target = document.getElementById("panel-" + t.dataset.tab);
+      target.classList.add("active");
+    }));
+
+    // ---- Filters (Intelligence tab) ----
+    const filterState = { region: "all", buyer: "all", conf: "all" };
+    const countEl = document.getElementById("count-strip");
+    document.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => {
+      const dim = c.dataset.filter;
+      const val = c.dataset.value;
+      filterState[dim] = val;
+      // toggle aria-pressed within this dimension
+      document.querySelectorAll(`.chip[data-filter="${dim}"]`).forEach(x => x.setAttribute("aria-pressed", "false"));
+      c.setAttribute("aria-pressed", "true");
+      applyFilters();
+    }));
+    function applyFilters() {
+      const plates = allEl.querySelectorAll(".plate");
+      let visible = 0;
+      plates.forEach(p => {
+        const okR = filterState.region === "all" || p.dataset.region === filterState.region;
+        const okB = filterState.buyer  === "all" || p.dataset.buyer  === filterState.buyer;
+        const okC = filterState.conf   === "all" || p.dataset.conf   === filterState.conf;
+        const show = okR && okB && okC;
+        p.style.display = show ? "" : "none";
+        if (show) visible++;
+      });
+      countEl.textContent = `${visible} / ${ENTITIES.length} visible`;
+    }
+
+    // ---- Compare (Tab 4) ----
+    const selects = ["cmp-1","cmp-2","cmp-3","cmp-4"].map(id => document.getElementById(id));
+    const defaultPicks = ["Profound","Bluefish AI","Peec AI","Otterly.AI"];
+    selects.forEach((sel, i) => {
+      // Add "(none)" + every entity option
+      sel.insertAdjacentHTML("beforeend", `<option value="">(none)</option>`);
+      ENTITIES.forEach(e => sel.insertAdjacentHTML("beforeend", `<option value="${e.n}">${e.n}</option>`));
+      sel.value = defaultPicks[i] || "";
+      sel.addEventListener("change", renderCompare);
+    });
+    const cmpHead = document.getElementById("cmp-head");
+    const cmpBody = document.getElementById("cmp-body");
+    function renderCompare() {
+      const picks = selects.map(s => s.value).filter(Boolean).map(n => ENTITIES.find(e => e.n === n)).filter(Boolean);
+      cmpHead.innerHTML = `<th></th>` + picks.map(p => `<th class="col-name">${p.n}</th>`).join("");
+      const rows = [
+        ["Positioning",     p => `<span class="pos">${p.pos}</span>`],
+        ["HQ",              p => p.hq],
+        ["Funding",         p => p.funding],
+        ["Pricing",         p => p.price],
+        ["Primary buyer",   p => p.buyerLabel],
+        ["Region",          p => p.region.toUpperCase()],
+        ["Confidence",      p => p.conf.toUpperCase()],
+        ["Primary citation",p => `<a href="${p.cite}" target="_blank" rel="noopener">source</a>`]
+      ];
+      cmpBody.innerHTML = rows.map(([label, fn]) =>
+        `<tr><td>${label}</td>${picks.map(p => `<td>${fn(p)}</td>`).join("")}</tr>`
+      ).join("");
+    }
+    renderCompare();
+
+  })();
+  </script>
+</body>
+</html>

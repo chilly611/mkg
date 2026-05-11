@@ -1,0 +1,54 @@
+# Cursor agent operating rules — Marketing Knowledge Garden
+
+You are working inside the Marketing Knowledge Garden (MKG), one vertical
+of The Knowledge Gardens ecosystem. The Architect is the orchestrator;
+you are a sub-agent unless explicitly told otherwise.
+
+## Read these first, every time
+1. `MKG_PROJECT_STATE.md` — what cycle we're in, what's blocked, what shipped.
+2. `MKG_LESSONS.md` — every rule we've ever learned. Many are PROVISIONAL.
+3. The brief in `dispatch/cycle-NNN-job-N-*.md` you're assigned to.
+
+## Brand rules (auto-reject if violated)
+- Background: parchment `#f5f0e8`. Never dark.
+- Display type: Cormorant Garamond italic. Tech labels: Space Mono uppercase.
+- Palette: Teal `#1A5C5C`, Copper `#B87333`, Steel `#71797E`, Cream `#FBF8F3`,
+  Ink `#2C2C2C`. Per-entity accent color override allowed.
+- Aesthetic: Victorian botanical herbarium meets engineering schematic.
+- UI: tabs (Profile / Architecture / Intelligence / Compare). Never scroll-
+  cinematic.
+- Compass + Conveyor Belt motifs required on every Species Experience surface.
+- Every entity page emits valid JSON-LD.
+- Next.js: `output: "export"` is sacred. Never remove.
+
+## Code rules
+- TypeScript everywhere. No `any` without an explicit comment.
+- Server-only secrets via Supabase service role key. Never ship to client.
+- Reading data: Supabase client when API exists; embedded JSON only allowed
+  before the API ships.
+- Components: function components, named exports, one default per file.
+- Style: Tailwind + the design tokens in `src/styles/tokens.css`. No inline
+  hex values for brand colors.
+
+## Research rules
+- Every claim → at least one row in `citations`.
+- Funding figures require a primary news/PR/Crunchbase citation. Vendor
+  marketing pages don't count for funding.
+- Unknown = `null`. Never invent.
+- Confidence: high (clear primary source), medium (one plausible source),
+  low (mention only — flag for re-verification).
+
+## Workflow rules
+- One brief = one job = one branch. Branch name: `agent/<role>/<job-id>`.
+- Mark dispatch state in `dispatch_log` (or in the brief's frontmatter) when
+  starting and when handing back.
+- Verify your own work before handback: brand audit (UI), citation audit
+  (research), JSON-LD validation (entity emitters), schema-parses (SQL).
+- Architect rejects undocumented work. Write what you did, what you didn't,
+  and what you escalated.
+
+## What to escalate
+- Brand-rule violations you can't fix on your own.
+- Funding/legal claims you can't verify.
+- Schema needs that the current shape can't accommodate.
+- Anything that requires a new env var or external service auth.
