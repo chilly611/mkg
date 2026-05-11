@@ -4,39 +4,42 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://marketing.theknowledgegardens.com"),
   title: {
-    default: "Marketing Knowledge Garden — The ground truth marketing AI cites",
-    template: "%s · Marketing Knowledge Garden",
+    default: "The Marketing Architect — the three things to do, the seven to ignore",
+    template: "%s · The Marketing Architect",
   },
   description:
-    "The canonical, AI-citable knowledge graph of marketing in the agentic era. A vertical of The Knowledge Gardens.",
+    "A productized service that reads your business and tells you the three plays to run, the seven to refuse, and exactly who else is fighting for your buyer's attention — with a citation behind every claim. A product of The Knowledge Gardens.",
   keywords: [
+    "The Marketing Architect",
+    "Marketing Architect",
+    "AI marketing strategy",
+    "AI marketing landscape",
+    "campaign teardown",
     "GEO",
     "AEO",
-    "AI search",
-    "AI marketing",
-    "brand visibility",
-    "ChatGPT citations",
-    "Perplexity",
-    "Gemini",
-    "answer engine optimization",
-    "generative engine optimization",
-    "Marketing Knowledge Garden",
+    "AI search visibility",
+    "fractional CMO alternative",
+    "marketing memo",
     "The Knowledge Gardens",
+    "Marketing Knowledge Garden",
+    "vertical B2B marketing",
+    "toxin-free brand strategy",
+    "consumer brand AI",
   ],
   authors: [{ name: "The Knowledge Gardens" }],
   openGraph: {
-    title: "Marketing Knowledge Garden",
+    title: "The Marketing Architect",
     description:
-      "The canonical, AI-citable knowledge graph of marketing in the agentic era.",
+      "Three things to do. Seven things to ignore. Every claim cited. A product of The Knowledge Gardens.",
     url: "https://marketing.theknowledgegardens.com",
-    siteName: "Marketing Knowledge Garden",
+    siteName: "The Marketing Architect",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Marketing Knowledge Garden",
+    title: "The Marketing Architect",
     description:
-      "The canonical, AI-citable knowledge graph of marketing in the agentic era.",
+      "Three things to do. Seven things to ignore. Every claim cited.",
   },
   robots: {
     index: true,
@@ -60,16 +63,17 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Space+Mono:wght@400;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Space+Mono:wght@400;700&display=swap"
         />
-        {/* JSON-LD: umbrella organization (per L-MKG-001) */}
+        {/* Umbrella org JSON-LD — sister-garden context for AI crawlers */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "Marketing Knowledge Garden",
+              name: "The Marketing Architect",
+              alternateName: "Marketing Knowledge Garden",
               url: "https://marketing.theknowledgegardens.com",
               parentOrganization: {
                 "@type": "Organization",
@@ -77,7 +81,13 @@ export default function RootLayout({
                 url: "https://theknowledgegardens.com",
               },
               description:
-                "The canonical, AI-citable knowledge graph of marketing in the agentic era.",
+                "A productized service that diagnoses how a business shows up to AI search and architects the fix.",
+              sameAs: [
+                "https://orchids.theknowledgegardens.com",
+                "https://builders.theknowledgegardens.com",
+                "https://health.theknowledgegardens.com",
+                "https://toxicology.theknowledgegardens.com",
+              ],
             }),
           }}
         />
