@@ -48,6 +48,7 @@ export type PostImage = {
   post_id: string;
   storage_path: string;
   filename: string | null;
+  mime_type: string | null;
   caption: string | null;
   sort_order: number;
   public_url: string;

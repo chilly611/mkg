@@ -59,7 +59,7 @@ export async function createPostAction(formData: FormData) {
   for (const file of images) {
     if (!file || typeof file === "string") continue;
     if (file.size === 0) continue;
-    if (file.size > 20 * 1024 * 1024) continue; // skip oversized silently
+    if (file.size > 100 * 1024 * 1024) continue; // skip oversized silently (>100MB)
     const safeName = (file.name || "image").replace(/[^a-zA-Z0-9._-]/g, "_");
     const storagePath = `${post.id}/${Date.now()}-${safeName}`;
     const { error: upErr } = await supabase.storage

@@ -91,10 +91,29 @@ export default async function PostDetailPage({
 
         {images.length > 0 && (
           <div className="pd-images">
-            {images.map((img) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img key={img.id} src={img.public_url} alt={img.caption ?? ""} className="pd-image" />
-            ))}
+            {images.map((media) => {
+              const isVideo = (media.mime_type ?? "").startsWith("video/");
+              if (isVideo) {
+                return (
+                  <video
+                    key={media.id}
+                    src={media.public_url}
+                    controls
+                    playsInline
+                    className="pd-image"
+                  />
+                );
+              }
+              return (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  key={media.id}
+                  src={media.public_url}
+                  alt={media.caption ?? ""}
+                  className="pd-image"
+                />
+              );
+            })}
           </div>
         )}
       </article>

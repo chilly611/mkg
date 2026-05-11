@@ -83,15 +83,15 @@ export default async function NewPostPage({
         </label>
 
         <label className="np-field">
-          <span className="np-label">Images (drag &amp; drop, multi-select)</span>
+          <span className="np-label">Media (images + short videos, multi-select)</span>
           <input
             type="file"
             name="images"
             multiple
-            accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml"
+            accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml,video/mp4,video/webm,video/quicktime"
             className="np-file"
           />
-          <span className="np-hint">Max 20 MB per image. PNG / JPEG / WebP / GIF / SVG.</span>
+          <span className="np-hint">Max 100 MB per file. PNG / JPEG / WebP / GIF / SVG · MP4 / WebM / MOV.</span>
         </label>
 
         <div className="np-actions">
