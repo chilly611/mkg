@@ -1,8 +1,8 @@
 {
-  "name": "marketing-knowledge-garden",
-  "version": "0.1.0",
+  "name": "the-marketing-architect",
+  "version": "0.2.0",
   "private": true,
-  "description": "Marketing Knowledge Garden — the canonical, AI-citable atlas of marketing in the agentic era. Sister to Builder's, Orchid, Health, Toxicology gardens.",
+  "description": "The Marketing Architect — a productized service that reads your business and tells you the three things to do, the seven to ignore. A product of The Knowledge Gardens.",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
@@ -12,7 +12,9 @@
   "dependencies": {
     "next": "16.1.6",
     "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "react-dom": "19.0.0",
+    "@supabase/ssr": "0.7.0",
+    "@supabase/supabase-js": "2.48.1"
   },
   "devDependencies": {
     "@types/node": "22.10.5",
