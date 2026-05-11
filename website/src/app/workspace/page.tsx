@@ -99,7 +99,7 @@ export default async function WorkspaceHome() {
           <li>
             <span className="wh-tag">✓</span>
             <div>
-              <strong>Email whitelist.</strong> Only Chilly, John, Michael can sign in.
+              <strong>Email whitelist.</strong> Chilly, John, Michael, and Paulina can sign in.
               Anyone else gets a polite redirect.
             </div>
           </li>
