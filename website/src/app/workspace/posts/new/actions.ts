@@ -5,17 +5,20 @@ import { revalidatePath } from "next/cache";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { slugify } from "@/lib/utils/slug";
 
+type UploadedMedia = {
+  storage_path: string;
+  filename: string;
+  mime_type: string;
+  file_size_bytes: number;
+};
+
 /**
- * Server action — create a post (+ optional images).
+ * Server action — create a post + record uploaded media.
  *
- * Called from /workspace/posts/new form.
- *
- * Pipeline:
- *   1. Validate signed-in user (middleware should have caught this; belt+braces).
- *   2. Insert the post row.
- *   3. For each image: upload to Supabase Storage `post-images/{post_id}/{filename}`,
- *      then insert a post_images row.
- *   4. Revalidate /workspace/posts and redirect to the new post detail page.
+ * v0.3.5b — client uploads files directly to Supabase Storage first, then
+ * passes the resulting metadata to this action as a JSON string in
+ * `media_json`. We never receive the file binaries here, so Vercel's request
+ * body cap is irrelevant.
  */
 export async function createPostAction(formData: FormData) {
   const supabase = await createSupabaseServerClient();
@@ -54,31 +57,32 @@ export async function createPostAction(formData: FormData) {
     redirect(`/workspace/posts/new?err=${msg}`);
   }
 
-  // Upload images (if any)
-  const images = formData.getAll("images") as File[];
-  for (const file of images) {
-    if (!file || typeof file === "string") continue;
-    if (file.size === 0) continue;
-    if (file.size > 100 * 1024 * 1024) continue; // skip oversized silently (>100MB)
-    const safeName = (file.name || "image").replace(/[^a-zA-Z0-9._-]/g, "_");
-    const storagePath = `${post.id}/${Date.now()}-${safeName}`;
-    const { error: upErr } = await supabase.storage
-      .from("post-images")
-      .upload(storagePath, file, {
-        contentType: file.type || "image/png",
-        upsert: false,
-      });
-    if (upErr) continue; // best-effort; failed uploads don't block post
-    await supabase.from("post_images").insert({
-      post_id: post.id,
-      storage_path: storagePath,
-      filename: safeName,
-      mime_type: file.type || null,
-      file_size_bytes: file.size,
-    });
+  // Record uploaded media (uploaded client-side directly to Storage).
+  let media: UploadedMedia[] = [];
+  const mediaJson = formData.get("media_json");
+  if (typeof mediaJson === "string" && mediaJson.length > 0) {
+    try {
+      const parsed = JSON.parse(mediaJson);
+      if (Array.isArray(parsed)) media = parsed as UploadedMedia[];
+    } catch {
+      // Bad JSON → ignore; post still ships without media.
+    }
   }
 
-  // Capture link URLs (one textarea, one per line) into post_links.
+  if (media.length > 0) {
+    await supabase.from("post_images").insert(
+      media.map((m, i) => ({
+        post_id: post.id,
+        storage_path: m.storage_path,
+        filename: m.filename,
+        mime_type: m.mime_type,
+        file_size_bytes: m.file_size_bytes,
+        sort_order: i,
+      }))
+    );
+  }
+
+  // Capture link URLs (one per line) into post_links.
   const links = String(formData.get("links") ?? "")
     .split(/\r?\n/)
     .map((s) => s.trim())

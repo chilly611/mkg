@@ -36,6 +36,14 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "lh3.googleusercontent.com" }, // Google avatar
     ],
   },
+  experimental: {
+    // Server actions only handle metadata now; client-side direct uploads
+    // to Supabase Storage handle the file binaries. Still bump this for
+    // safety — Stripe webhooks and Claude API responses can be chatty.
+    serverActions: {
+      bodySizeLimit: "5mb",
+    },
+  },
 };
 
 export default nextConfig;
