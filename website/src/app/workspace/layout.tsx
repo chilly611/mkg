@@ -37,10 +37,14 @@ export default async function WorkspaceLayout({
 
           <nav className="ws-nav" aria-label="Workspace navigation">
             <Link href="/workspace">Overview</Link>
+            <div className="ws-nav-group">CRM</div>
+            <Link href="/workspace/accounts">Accounts</Link>
+            <Link href="/workspace/pipeline">Pipeline</Link>
+            <Link href="/workspace/teardowns">Teardowns</Link>
+            <div className="ws-nav-group">Thinking</div>
             <Link href="/workspace/posts">Posts &amp; ideas</Link>
             <Link href="/workspace/categories">Categories</Link>
             <Link href="/workspace/research">Research · Claude</Link>
-            <Link href="/workspace/team">Team</Link>
           </nav>
 
           <div className="ws-footer">
@@ -145,6 +149,15 @@ const styles = `
   color: #00ffd1;
   border-left-color: #00ffd1;
   background: rgba(0,255,209,0.04);
+}
+.ws-nav-group {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #5a5c61;
+  padding: 14px 12px 4px;
+  font-weight: 700;
 }
 .ws-footer {
   margin-top: 18px;

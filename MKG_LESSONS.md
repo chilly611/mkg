@@ -1,6 +1,7 @@
 # MKG_LESSONS.md
-**Marketing Knowledge Garden — Lessons Log**
+**The Marketing Architect — Lessons Log**
 *Last reconciled with umbrella `09_LESSONS.md`: 2026-05-09*
+*Last MKG-specific additions: 2026-05-11 (Mother's Day cycle, L-MKG-010..013)*
 
 This file holds the lessons that govern Marketing Knowledge Garden agents.
 
@@ -189,6 +190,54 @@ substitute. **Trigger.** The architect prompt and the masterdoc each
 locked a tagline; reconciliation must preserve both. **Affected
 agents.** Build, Architect, Critic.
 
+### `L-MKG-010` — Products with server-side auth/payments override the static-export rule
+**Rule.** Umbrella `L-006` says `output: "export"` is sacred — never
+removed. That rule applies to **citation gardens** (OKG, BKG, HKG, TKG):
+pure static, AI-crawlable, no writes. The Marketing Architect is a
+**product** with auth, Stripe, server actions, and a Claude API research
+panel. Server-side capability is required. Removing `output: "export"`
+in this codebase specifically is correct; other gardens keep static
+export. **Trigger.** Cycle 003.5 Google OAuth callback requires
+server-side code exchange — physically impossible with static export.
+**Affected agents.** Build, Deploy, Critic.
+
+### `L-MKG-011` — Vercel body-size cap requires client-side direct upload to Storage
+**Rule.** Vercel server actions cap at ~4.5 MB body on Hobby (and have
+limits on Pro too). Any media upload (especially video) MUST use
+client-side direct upload to Supabase Storage. The server action handles
+only the resulting metadata (storage path, filename, mime type, size).
+Pattern: form is a client component; on submit, browser uploads each
+file using the Supabase JS client, then passes a JSON manifest to the
+server action via FormData. **Trigger.** Cycle 003.5 — two MP4 logo
+animations crashed the publish flow with "client-side exception"
+because the multipart body exceeded the Vercel cap before the action
+even ran. **Affected agents.** Build, Deploy.
+
+### `L-MKG-012` — `auth.users → public.users` sync must be a Postgres trigger
+**Rule.** When you mirror Supabase auth users into a `public.users`
+table (for FK targeting and profile fields), do the sync via a
+**Postgres trigger** on `auth.users`, NOT via the OAuth callback's
+upsert from the client. The client-side upsert has a race condition
+with RLS policy creation and silently fails when policies aren't in
+place yet (or when the user signed in before a policy migration ran).
+The trigger uses `security definer` and runs server-side, atomically,
+on every insert/update. **Trigger.** Cycle 003.5 — categories dropdown
+empty + posts crashing on FK violation because `public.users` had no
+row for the signed-in user; the callback upsert had silently 403'd.
+**Affected agents.** Schema, Build, Deploy.
+
+### `L-MKG-013` — Whitelist sync: env-var + DB allowlist must apply together
+**Rule.** When a workspace uses a two-layer allowlist (env-var read by
+middleware + DB table read by RLS), the two MUST be synced via the same
+migration. Drift between the two produces the worst class of bug:
+middleware lets the user in, RLS gives them empty result sets, every
+page looks broken in a different way. Always seed both sides from the
+same source of truth. **Trigger.** Cycle 003.5 — John and Paulina were
+in the Vercel env var but the original migration only seeded Chilly and
+Michael in `workspace_allowed_emails`. Their hypothetical sign-in would
+have produced confusing empty workspaces. **Affected agents.** Schema,
+Deploy, Critic.
+
 ---
 
 ## C. Reconciliation map (for the audit trail)
@@ -225,6 +274,13 @@ runs this review weekly per `L-032`. Default action if unsure: promote
   invented credentials" to cover non-funding fact classes.
 - `L-MKG-008` (lessons fetch before brief write) — strong candidate;
   this is the meta-loop and applies universally.
+- `L-MKG-011` (client-side direct upload to Storage) — strong candidate;
+  any future garden with media uploads + a hosted Next.js stack will hit
+  the same body-size wall.
+- `L-MKG-012` (`auth.users → public.users` trigger) — strong candidate;
+  every garden adding auth will need this exact pattern.
+- `L-MKG-013` (whitelist sync) — moderate candidate; applies wherever a
+  two-layer allowlist exists.
 
 ---
 

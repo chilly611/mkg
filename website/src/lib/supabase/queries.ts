@@ -187,3 +187,216 @@ export async function getCategoryPostCounts(): Promise<Record<string, number>> {
   }
   return counts;
 }
+
+// ============================================================================
+// CRM types + queries (Cycle 004)
+// ============================================================================
+
+export type AccountStatus = "prospect" | "qualified" | "customer" | "churned" | "lost";
+export type AccountSource = "john_network" | "inbound" | "event" | "cold" | "referral" | "partner" | "unknown";
+export type DealKind = "memo" | "teardown" | "audit" | "embedded" | "custom";
+export type DealStage = "new" | "briefed" | "in_progress" | "review" | "delivered" | "won" | "lost";
+export type ActivityKind = "call" | "email_sent" | "email_received" | "meeting" | "linkedin_dm" | "note" | "event" | "demo" | "intro" | "other";
+
+export type Account = {
+  id: string;
+  slug: string;
+  name: string;
+  website_url: string | null;
+  logo_url: string | null;
+  plan_tier: string;
+  stripe_customer_id: string | null;
+  billing_email: string | null;
+  industry: string | null;
+  size_employees: string | null;
+  hq_city: string | null;
+  hq_country: string | null;
+  account_status: AccountStatus;
+  linkedin_url: string | null;
+  owner_email: string | null;
+  pitch_notes: string | null;
+  source: AccountSource;
+  metadata: Record<string, unknown>;
+  created_at: string;
+  updated_at: string;
+};
+
+export type Contact = {
+  id: string;
+  organization_id: string;
+  name: string;
+  email: string | null;
+  role_title: string | null;
+  linkedin_url: string | null;
+  is_primary_contact: boolean;
+  notes: string | null;
+  created_at: string;
+};
+
+export type Deal = {
+  id: string;
+  slug: string | null;
+  organization_id: string;
+  primary_contact_id: string | null;
+  title: string;
+  kind: DealKind;
+  stage: DealStage;
+  value_usd: number | null;
+  owner_email: string | null;
+  expected_close_date: string | null;
+  closed_at: string | null;
+  brief_summary: string | null;
+  delivered_output_id: string | null;
+  created_at: string;
+  updated_at: string;
+  // Joined fields from deals_enriched
+  org_slug?: string;
+  org_name?: string;
+  org_industry?: string | null;
+  org_account_status?: AccountStatus;
+  primary_contact_name?: string | null;
+  primary_contact_email?: string | null;
+  primary_contact_role?: string | null;
+};
+
+export type Activity = {
+  id: string;
+  organization_id: string;
+  deal_id: string | null;
+  contact_id: string | null;
+  kind: ActivityKind;
+  title: string;
+  body_md: string | null;
+  happened_at: string;
+  logged_by: string | null;
+  created_at: string;
+};
+
+// ---------- Accounts ----------
+
+export async function getAccounts(opts: { status?: AccountStatus; limit?: number } = {}): Promise<Account[]> {
+  const supabase = await createSupabaseServerClient();
+  let q = supabase.from("organizations").select("*").order("updated_at", { ascending: false });
+  if (opts.status) q = q.eq("account_status", opts.status);
+  if (opts.limit) q = q.limit(opts.limit);
+  const { data, error } = await q;
+  if (error) throw error;
+  return (data ?? []) as Account[];
+}
+
+export async function getAccountBySlug(slug: string): Promise<Account | null> {
+  const supabase = await createSupabaseServerClient();
+  const { data, error } = await supabase
+    .from("organizations")
+    .select("*")
+    .eq("slug", slug)
+    .maybeSingle();
+  if (error) throw error;
+  return (data ?? null) as Account | null;
+}
+
+export async function getAccountContacts(orgId: string): Promise<Contact[]> {
+  const supabase = await createSupabaseServerClient();
+  const { data, error } = await supabase
+    .from("contacts")
+    .select("*")
+    .eq("organization_id", orgId)
+    .order("is_primary_contact", { ascending: false })
+    .order("created_at", { ascending: true });
+  if (error) throw error;
+  return (data ?? []) as Contact[];
+}
+
+export async function getAccountDeals(orgId: string): Promise<Deal[]> {
+  const supabase = await createSupabaseServerClient();
+  const { data, error } = await supabase
+    .from("deals_enriched")
+    .select("*")
+    .eq("organization_id", orgId)
+    .order("created_at", { ascending: false });
+  if (error) throw error;
+  return (data ?? []) as Deal[];
+}
+
+export async function getAccountActivities(orgId: string, limit = 30): Promise<Activity[]> {
+  const supabase = await createSupabaseServerClient();
+  const { data, error } = await supabase
+    .from("account_activities")
+    .select("*")
+    .eq("organization_id", orgId)
+    .order("happened_at", { ascending: false })
+    .limit(limit);
+  if (error) throw error;
+  return (data ?? []) as Activity[];
+}
+
+export async function getAccountSummaryCounts(): Promise<Record<AccountStatus, number>> {
+  const supabase = await createSupabaseServerClient();
+  const { data, error } = await supabase.from("organizations").select("account_status");
+  if (error) throw error;
+  const counts: Record<string, number> = {
+    prospect: 0, qualified: 0, customer: 0, churned: 0, lost: 0,
+  };
+  for (const row of data ?? []) {
+    const s = (row as { account_status: AccountStatus }).account_status;
+    counts[s] = (counts[s] ?? 0) + 1;
+  }
+  return counts as Record<AccountStatus, number>;
+}
+
+// ---------- Deals + Pipeline ----------
+
+export async function getRecentDeals(opts: { kind?: DealKind; stage?: DealStage; limit?: number } = {}): Promise<Deal[]> {
+  const supabase = await createSupabaseServerClient();
+  let q = supabase.from("deals_enriched").select("*").order("updated_at", { ascending: false });
+  if (opts.kind) q = q.eq("kind", opts.kind);
+  if (opts.stage) q = q.eq("stage", opts.stage);
+  if (opts.limit) q = q.limit(opts.limit);
+  const { data, error } = await q;
+  if (error) throw error;
+  return (data ?? []) as Deal[];
+}
+
+export async function getDealBySlug(slug: string): Promise<Deal | null> {
+  const supabase = await createSupabaseServerClient();
+  const { data, error } = await supabase
+    .from("deals_enriched")
+    .select("*")
+    .eq("slug", slug)
+    .maybeSingle();
+  if (error) throw error;
+  return (data ?? null) as Deal | null;
+}
+
+export async function getPipelineByStage(): Promise<Record<DealStage, Deal[]>> {
+  const supabase = await createSupabaseServerClient();
+  const { data, error } = await supabase
+    .from("deals_enriched")
+    .select("*")
+    .order("updated_at", { ascending: false });
+  if (error) throw error;
+  const grouped: Record<DealStage, Deal[]> = {
+    new: [], briefed: [], in_progress: [], review: [], delivered: [], won: [], lost: [],
+  };
+  for (const d of (data ?? []) as Deal[]) {
+    grouped[d.stage].push(d);
+  }
+  return grouped;
+}
+
+export async function getPipelineValue(): Promise<{ open_usd: number; won_usd: number }> {
+  const supabase = await createSupabaseServerClient();
+  const { data, error } = await supabase
+    .from("deals")
+    .select("stage, value_usd");
+  if (error) throw error;
+  let open = 0;
+  let won = 0;
+  for (const row of (data ?? []) as { stage: DealStage; value_usd: number | null }[]) {
+    const v = Number(row.value_usd ?? 0);
+    if (!Number.isFinite(v)) continue;
+    if (row.stage === "won") won += v;
+    else if (row.stage !== "lost" && row.stage !== "delivered") open += v;
+  }
+  return { open_usd: open, won_usd: won };
+}

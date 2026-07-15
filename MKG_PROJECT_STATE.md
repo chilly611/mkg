@@ -1,120 +1,115 @@
 # MKG_PROJECT_STATE.md
 
-Living state of the Marketing Knowledge Garden. Updated at the close of every dispatch cycle by the Architect. Most recent cycle on top.
+Living state of **The Marketing Architect** (the product formerly scoped as the Marketing Knowledge Garden). Updated at the close of every dispatch cycle by the Architect. Most recent cycle on top.
 
 ---
 
-## Cycle 002 — 2026-05-10 — Masterdoc reconciliation + 12-agent fan-out
+## Cycle 003.5 — 2026-05-11 — Workspace + posts shipped (Mother's Day weekend)
 
-**Architect.** Cowork session. Masterdoc v2 + tasks.lessons.md + brand assets ZIP landed mid-cycle and triggered a paradigm shift.
+**Architect.** Cowork session with Chilly hands-on. Closing in the morning of 2026-05-11 after the long Mother's Day arc.
 
-**Three big paradigm shifts (now integrated).**
-1. **MKG primary entity is `Campaign`** — not company-entities. Per masterdoc v2 §11.3. The Cycle 001 GEO/AEO landscape is competitor intel, not the primary graph.
-2. **Named beachhead = the umbrella itself.** Internal-first sourcing for Cycles 002–004. BKG launch, HKG GLP-1, OKG Bloom Ledger, seed pitch are the Day-1 dataset.
-3. **Supabase already exists** — `vlezoyalutexenbnzzui` (knowledge-gardens-prod). MKG namespaces into a `mkg.` schema. No new project to provision; brand-assets bucket already wired.
+**Three big paradigm shifts this cycle.**
+1. **Site is a team workspace + public artifacts, not a marketing brochure.** Auth-gated `/workspace` with posts, comments, categories, image+video upload. Public side stays clean.
+2. **Product brand = "The Marketing Architect"**, not MKG. The umbrella's "Knowledge Garden" framing stays at the umbrella level; the product carries its own register (dark, electric cyan, Space Grotesk, JetBrains Mono).
+3. **Static-export rule (umbrella L-006) overridden for this product** specifically. Auth, Stripe, server actions, and client-side direct uploads require server-side capability. Lesson logged as L-MKG-010. Other gardens stay static.
 
-**Twelve parallel agents dispatched and returned.** All verified.
-- research-msi-1 (marketing science authorities) — MSI + Ehrenberg-Bass + AMA journal triad as anchors
-- research-bench-1 (performance benchmarks) — top-5 ingest list: WordStream, HubSpot, Mailchimp, Meta, Google
-- research-2-autoagents (autonomous marketing agents wedge) — 28 entities, persisted to outputs
-- research-4-vertical (vertical AI marketing for our gardens) — 4 verticals × 8–12 entities; OKG and TKG verticals are highest arbitrage
-- research-5-geo-commerce (LATAM + agentic commerce) — 18 LATAM + 20 agentic; WhatsApp + AI + LATAM is the white space
-- research-6-internal (internal campaign inventory) — 8–12 P1/P2 candidates identified; campaign-light state confirmed
-- research-7-projscan (project scan) — confirmed L-026 font lesson; flagged TKG (react 19.2.3) vs MKG (19.0.0) version drift
-- research-8-academic (open-source + academic) — Liu/Zhang/Liang + GEO paper + HELM as academic anchors; awesome-mcp-servers + promptfoo + Ragas as contribution targets
-- strategy-agent-1 (wedge selection) — pick (a): BKG sliver-launch teardown as Campaign #001
-- strategy-agent-2 (pricing) — 4-lane pricing card committed
-- build-schema-2 (campaign schema) — full SCHEMA.sql v0.2 delivered
-- deploy-agent-2 (Supabase migration plan) — full plan delivered
-- critic-agent-1 (brand audit on v3) — 2 must-fix items: federation cross-link + signature compare device
+**Shipped (all live in production).**
+- Public homepage `/` — single-page Brief (dark aesthetic, 11 sections, legacy paragraph naming Kathleen + Dr. Dahlgren, dual wedge B2B + consumer + freemium, JSON-LD)
+- Competitive landscape `/the-marketing-architect-landscape/` — 175 companies, dark register, filterable
+- Archived `/archive/competitive-landscape/` + `/archive/team-atlas/` (Cycle 002 artifacts preserved)
+- Auth: Google OAuth via Supabase + 4-account email whitelist
+- Postgres trigger: `auth.users → public.users` auto-mirror on every sign-in (replaces fragile client-side callback upsert)
+- Workspace `/workspace` — landing, sidebar with sign-out + public-brief link
+- Posts feed `/workspace/posts` — category chips, pinned/recent ordering, empty state
+- Post creation `/workspace/posts/new` — **client-side direct upload to Supabase Storage**, bypassing Vercel's 4.5 MB body limit. Supports images + MP4/WebM/MOV up to 100 MB. Live progress UI.
+- Post detail `/workspace/posts/[slug]` — body + image grid + video `<video>` tags + comments + owner delete
+- Categories `/workspace/categories` — 8 pre-seeded topics with live post counts
+- Comments per post + delete-own — RLS enforced
+- Storage bucket `post-images` (public read, authenticated workspace-member write)
 
-**Shipped this cycle.**
-- `SCHEMA.sql` v0.2 — campaign-centric, mkg.-namespaced, anti-fabrication enforced via NOT NULL constraints, applied-ready
-- `MKG_LESSONS.md` (already reconciled in Cycle 001.5; PROVISIONAL queue still active for some L-MKG-NNN codes)
-- `CAMPAIGN_TEARDOWN_PRD.md` — the killer-app product spec
-- `INTERNAL_FIRST_ROADMAP.md` — 90-day plan with 5 metrics + 5 kill criteria
-- `PRICING_HYPOTHESIS.md` — Public/Pro/Admin/Machine prices anchored to 40-entity dataset
-- `SUPABASE_MIGRATION_PLAN.md` — applies SCHEMA.sql to existing project + brand-assets integration
-- `HEARTBEAT_AND_DEPLOY.md` — GitHub init + Vercel + DNS + cron architecture
-- `EXEC_ONE_PAGER.md` — 90-second exec brief
-- `TEAM_READOUT_5MIN.md` — stand-up script with Q&A pre-empts
-- `artifacts/team-atlas.html` — 8-tab interactive team brief, phone-friendly, embeds umbrella tree + observation eye + competitive landscape teaser
-- `website/vercel.json` — weekly cron config (cycle-close + citation-test)
-- `website/public/team-atlas/index.html` — deploy copy of Team Atlas
-- v3 artifact and deploy copy patched with sister-gardens federation strip (per critic-agent-1 must-fix)
-- `brand-assets/` — umbrella ZIP unzipped locally (umbrella tree marks, HKG plates, TKG 6-stage motions, observation eye)
+**Schema additions.**
+- `public.posts` · `public.post_images` · `public.post_links` · `public.comments` · `public.post_categories` (8 seeded) · `public.workspace_allowed_emails` (4 seeded)
+- `public.is_workspace_member(uid)` function (security definer)
+- `public.handle_new_auth_user()` trigger function on `auth.users` (auto-mirrors to `public.users`)
+- Storage bucket policy expanded to 100 MB + video MIME types
 
-**Blocked.**
-- **Schema not yet applied to live Supabase.** Chilly's one-click step. Two paths in `SUPABASE_MIGRATION_PLAN.md`.
-- **Repo not yet created on GitHub.** One command in `HEARTBEAT_AND_DEPLOY.md`.
-- **Vercel project not yet imported.** 3-minute task.
-- **DNS CNAME not yet added.** 1-minute task.
-- **MCP server endpoints not yet built.** Cycle 003 build target.
-- **`/api/cron/*` endpoints not yet built.** Cycle 003 build target.
-- **MKG-specific brand mark not commissioned.** Currently using umbrella tree + observation eye. Cycle 004 candidate.
+**Stack.**
+- Repo: `github.com/chilly611/mkg` (private to Chilly's GitHub)
+- Vercel project: `chillyd-2693s-projects/mkg`, Hobby plan, auto-deploy from `main`
+- Domain: `marketing.theknowledgegardens.com` (CNAME via GoDaddy → `cname.vercel-dns.com`)
+- Supabase project: `rojpjtyjiapqpsxdeovk` (dedicated MKG, us-east-2, MICRO tier)
+- Env vars in Vercel: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `WORKSPACE_ALLOWED_EMAILS`, `PUBLIC_URL`
 
-**Lessons added.** None new. The masterdoc reconciliation in Cycle 001.5 already mapped the [P] codes against L-001..L-032. No regressions caught this cycle.
+**Team (4 whitelisted accounts).**
+| Email | Role |
+|---|---|
+| `chillyd@gmail.com` | Chilly — founder / CTO / design authority |
+| `bou@theknowledgegardens.com` | John Bou — CEO / BD |
+| `michaelbou@gmail.com` | Michael Bou — new hire |
+| `paulina0101@gmail.com` | Paulina — trusted advisor, initiated the idea |
 
-**Compounding score (Cycle 001 baseline).** 254.6. Cycle 002 doesn't beat it because: no new high-confidence entities ingested (waiting on Supabase apply); no LLM citations achieved (waiting on Public Lane publish); lessons stayed flat (no new mistakes). Cycle 003 should reset the baseline once schema is live and the BKG teardown publishes.
+**Blocked / waiting.**
+- `ANTHROPIC_API_KEY` not in Vercel env yet (blocks Claude research panel build)
+- Stripe products + price IDs not created (blocks checkout)
+- John, Michael, Paulina have not yet signed in for the first time (no immediate impact — the trigger handles them whenever they do)
 
-**Citation health.** No re-run this cycle (citation-test endpoint not yet built). Baseline from Cycle 001 still stands: 0/4 canonical questions cite MKG.
+**Lessons added (live in `MKG_LESSONS.md`).**
+- `L-MKG-010` — Products with server-side auth/payments override the static-export rule (L-006 stays for citation gardens)
+- `L-MKG-011` — Vercel server actions cap at ~4.5 MB body on Hobby; large media must use client-side direct upload to Storage
+- `L-MKG-012` — `auth.users → public.users` sync must be a Postgres trigger, not a client-side OAuth callback (race condition with RLS policies)
+- `L-MKG-013` — Whitelist drift: env-var allowlist and DB allowlist must be synced via the same migration to avoid 403/empty-result bugs
 
-**Decisions Chilly closed this cycle.**
-- Supabase: Architect drafts plan, Chilly applies. ✓ Plan delivered.
-- GitHub repo: `knowledge-gardens-marketing`. ✓ Confirmed.
-- Persistence: weekly heartbeat. ✓ Cron architecture committed.
-- Masterdoc: v2 from Chilly's upload. ✓ Read and integrated.
-
-**Decisions still open.**
-- Promote Agent commit authority (PR vs direct).
-- Default graph license (CC-BY-SA vs CC-BY-NC).
-- External onboarding trigger (specifics).
-- Public-lane CAC budget.
-- MKG-specific brand mark commission.
-
-**Next cycle (003) — proposed sequence.**
-1. Chilly executes the deploy: GitHub create + Vercel import + DNS CNAME + Supabase migration apply (≈10 min total).
-2. Schema Agent verifies schema applied; seeds umbrella as `mkg.brands` row.
-3. Research Agent ingests 40 GEO/AEO entities into `mkg.competitor_entities` + explodes claims into `mkg.citations`.
-4. Build Agent (build-api-1) ships the MCP server + JSON-LD feed + sitemap + llms.txt.
-5. Build Agent (build-ui-1) ships the Campaign Teardown surface for the BKG sliver-launch record.
-6. Deploy Agent runs the first citation health test against live URLs.
-7. Critic Agent files lessons.
-8. Architect closes Cycle 003 with new compounding score baseline.
+**Next cycle (004).** Claude research panel · Stripe checkout · markdown rendering polish · first real Campaign Teardown post. See `TOMORROW_PROMPT.md` for the resume prompt.
 
 ---
 
-## Cycle 001 — 2026-05-09 — Bootstrap (preserved for audit)
+## Cycle 003 — 2026-05-10 — Unified Brief homepage + dual wedge
 
-See `dispatch/cycle-001-report.md` for the full Cycle 001 record.
+(Mother's Day morning through afternoon.)
 
-**Headlines.** Local repo scaffolded. SCHEMA.sql v0.1 (entities-centric — superseded by v0.2). PROVISIONAL lessons committed and reconciled in Cycle 001.5. Research handback: 40 GEO/AEO entities, 31 high-confidence. Citation baseline established. Rebuilt landscape artifact (parchment, Cormorant + Space Mono — pre-L-026 reconciliation, refactored to v3 with Inter default). Next.js scaffold with `output: "export"` mirroring TKG ship pattern.
+Shipped: dark-aesthetic single-page Brief replacing the parchment landing; legacy paragraph honoring Kathleen Dahlgren and Dr. James Dahlgren; dual wedge (B2B founder track + consumer brand track) + freemium consumer tool framing; archived Cycle 002 parchment artifacts to `/archive/*`. Push to `chilly611/mkg`, Vercel rebuilt green.
 
 ---
 
-## Standing facts
+## Cycle 002.5 — 2026-05-10 (overnight) — Mother's Day strategic pivot
+
+12 parallel agents on competitive landscape + strategy + critic + build. Reframed MKG → The Marketing Architect product, not a fifth garden template. Dropped "campaigns as primary entity" + "internal-first 12-week sourcing" — replaced with product-shape schema (architect_sessions, campaign_briefs, architect_outputs) and dual revenue + distribution lanes per the brainstorm substrate (`MARKETING_IN_AGE_OF_AI.md`).
+
+Documents shipped: `THE_MARKETING_ARCHITECT.md`, `MEMO_TO_JOHN.md`, `THE_NOT_DOING_LIST.md`, `HUMOR_AND_WOM_EVIDENCE.md`, `MARKETING_IN_AGE_OF_AI.md`.
+
+---
+
+## Cycle 002 — 2026-05-09 — Schema v0.2 + Campaign Teardown PRD (superseded)
+
+Campaign-centric `mkg.`-namespaced schema, Campaign Teardown spec, Internal-First Roadmap, Pricing Hypothesis, Supabase Migration Plan, Heartbeat & Deploy runbook, Exec One-Pager, 5-Min Team Readout, **Team Atlas** interactive HTML, GEO/AEO research wedge handback (40 entities, 31 high-confidence). All superseded by Cycle 003 pivot but preserved for audit lineage.
+
+---
+
+## Cycle 001 — 2026-05-09 — Bootstrap
+
+Local repo scaffold, schema v0.1, lessons file, dispatch templates, landscape artifact v2 (parchment), 40-entity GEO/AEO research handback, citation baseline. See `dispatch/cycle-001-report.md`.
+
+---
+
+## Standing facts (as of 2026-05-11)
 
 - **Working dir:** `~/Documents/Claude/Projects/Knowledge Gardens Umbrella/Marketing/`
-- **Domain (planned):** `marketing.theknowledgegardens.com`
-- **Supabase project:** `vlezoyalutexenbnzzui` (knowledge-gardens-prod) — existing, MKG namespaces as `mkg.`
-- **GitHub repo:** `knowledge-gardens-marketing` — to create
-- **Vercel project:** to create; Root Directory = `website`
-- **Heartbeat cadence:** weekly Sunday evening (per Chilly's decision)
-- **Architect spawn entry point:** Cowork session with the architect prompt + masterdoc v2 + tasks.lessons.md + brand assets
+- **Domain:** `marketing.theknowledgegardens.com` (live)
+- **Supabase project:** `rojpjtyjiapqpsxdeovk` (dedicated MKG)
+- **GitHub repo:** `chilly611/mkg` (live)
+- **Vercel project:** `chillyd-2693s-projects/mkg` (Hobby, auto-deploy from `main`)
+- **Heartbeat cadence:** weekly Sunday evening (declared in Cycle 002; cron endpoints not yet built — Cycle 004+)
+- **Architect spawn entry point:** Cowork session with `TOMORROW_PROMPT.md` pasted as context
 
 ---
 
-## Anti-patterns in force (per masterdoc v2 §7.5 + 09_LESSONS.md)
+## Anti-patterns in force
 
-1. Dark backgrounds (Garden Wars exception only). Reject.
+1. **Dark backgrounds outside the MA product surface.** Other gardens stay parchment. The Marketing Architect specifically uses dark.
 2. Scroll-cinematic for entity views. Reject.
-3. Flat card grids as the entity experience. Reject.
-4. Brass/gold tones on metallic UI. Copper or Steel only. Reject.
-5. Stock photography. Reject.
-6. Auto-playing video. Reject.
-7. Modal popups for newsletter signup. Reject.
-8. AI-generated lorem ipsum / fabricated data. Reject — federation-wide cost.
-9. Reimagining the kernel from scratch each session. Reject.
-10. Modifying umbrella header/footer per garden. Reject.
-
-Cycle 002 v3 patch addressed: federation cross-link gap (sister-gardens strip added). Still queued for Cycle 003: signature "two-views" compare slider on the Campaign Teardown.
+3. Flat card grids without engineering-signature ornaments. Reject.
+4. AI-generated lorem ipsum / fabricated data. Reject — federation-wide cost.
+5. Reimagining the kernel from scratch each session. Reject — enhance, don't replace.
+6. Removing `output: "export"` from sister gardens that need static citation surface (L-006 still applies to OKG/BKG/TKG/HKG). MA is the exception, not the rule.
+7. **Server actions handling file binaries on Vercel Hobby.** Use client-side direct upload to Storage (L-MKG-011).
+8. **Relying on the OAuth callback to upsert into `public.users`.** Use the Postgres trigger (L-MKG-012). Auth.users → public.users is database-level, not application-level.
